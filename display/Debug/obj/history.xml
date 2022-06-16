@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<history>
+   <processor signature="arm-none-eabi-gcc noversion nomachine -mcpu=cortex-m3 -mthumb -Wall -ffunction-sections -g -O3 -c -DSTM32F103C8 -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -D__ASSEMBLY__ -ID:\Git Codes\Jotiey -ID:\Git Codes\Jotiey\RMS current_18Oct2021\dmd_meghna_voirob\FreeRTOS\portable\GCC\ARM_CM3 -ID:\Git Codes\Jotiey\RMS current_18Oct2021\dmd_meghna_voirob\stm_lib -ID:\Git Codes\Jotiey\RMS current_18Oct2021 -ID:\Git Codes\Jotiey\RMS current_18Oct2021\dmd_meghna_voirob\source\usart -ID:\Git Codes\Jotiey\RMS current_18Oct2021\dmd_meghna_voirob\source\gpio -ID:\Git Codes\Jotiey\RMS current_18Oct2021\dmd_meghna_voirob\source\led -ID:\Git Codes\Jotiey\RMS current_18Oct2021\dmd_meghna_voirob\cmsis_boot -ID:\Git Codes\Jotiey\RMS current_18Oct2021\dmd_meghna_voirob\source\exti -ID:\Git Codes\Jotiey\RMS current_18Oct2021\dmd_meghna_voirob\FreeRTOS -ID:\Git Codes\Jotiey\RMS current_18Oct2021\dmd_meghna_voirob\FreeRTOS\portable -ID:\Git Codes\Jotiey\RMS current_18Oct2021\dmd_meghna_voirob\source\w26 -ID:\Git Codes\Jotiey\RMS current_18Oct2021\dmd_meghna_voirob\stm_lib\inc -ID:\Git Codes\Jotiey\RMS current_18Oct2021\dmd_meghna_voirob\FreeRTOS\include -ID:\Git Codes\Jotiey\RMS current_18Oct2021\dmd_meghna_voirob\FreeRTOS\portable\GCC -ID:\Git Codes\Jotiey\RMS current_18Oct2021\dmd_meghna_voirob\source\debug -ID:\Git Codes\Jotiey\RMS current_18Oct2021\dmd_meghna_voirob\cmsis -ID:\Git Codes\Jotiey\RMS current_18Oct2021\dmd_meghna_voirob\source\adc -ID:\Git Codes\Jotiey\RMS current_18Oct2021\dmd_meghna_voirob -ID:\Git Codes\Jotiey\RMS current_18Oct2021\dmd_meghna_voirob\source">
+      <target file="stm32f10x_dbgmcu.o" lastModified="1816a9bdc68">
+         <source file="..\..\..\stm_lib\src\stm32f10x_dbgmcu.c" lastModified="161fc3d3830"/>
+      </target>
+      <target file="exti.o" lastModified="1816a9c8417">
+         <source file="..\..\..\source\exti\exti.c" lastModified="1816a9c7e17"/>
+      </target>
+      <target file="gpio.o" lastModified="1816a9be45f">
+         <source file="..\..\..\source\gpio\gpio.c" lastModified="17ef3f790b8"/>
+      </target>
+      <target file="w26.o" lastModified="1816a9bd957">
+         <source file="..\..\..\source\w26\w26.c" lastModified="181535fec60"/>
+      </target>
+      <target file="stm32f10x_iwdg.o" lastModified="1816a9bf2bf">
+         <source file="..\..\..\stm_lib\src\stm32f10x_iwdg.c" lastModified="15c360e3600"/>
+      </target>
+      <target file="tasks.o" lastModified="1816a9be635">
+         <source file="..\..\..\FreeRTOS\tasks.c" lastModified="155092faf80"/>
+      </target>
+      <target file="stm32f10x_crc.o" lastModified="1816a9be2b9">
+         <source file="..\..\..\stm_lib\src\stm32f10x_crc.c" lastModified="15bf26bd970"/>
+      </target>
+      <target file="stm32f10x_rcc.o" lastModified="1816a9be3a4">
+         <source file="..\..\..\stm_lib\src\stm32f10x_rcc.c" lastModified="15bf26baa90"/>
+      </target>
+      <target file="stm32f10x_pwr.o" lastModified="1816a9bde87">
+         <source file="..\..\..\stm_lib\src\stm32f10x_pwr.c" lastModified="15c0d073860"/>
+      </target>
+      <target file="event_groups.o" lastModified="1816a9bf03d">
+         <source file="..\..\..\FreeRTOS\event_groups.c" lastModified="155092faf80"/>
+      </target>
+      <target file="croutine.o" lastModified="1816a9bef62">
+         <source file="..\..\..\FreeRTOS\croutine.c" lastModified="155092faf80"/>
+      </target>
+      <target file="led.o" lastModified="1816a9bdd99">
+         <source file="..\..\..\source\led\led.c" lastModified="17ee6548998"/>
+      </target>
+      <target file="queue.o" lastModified="1816a9bec20">
+         <source file="..\..\..\FreeRTOS\queue.c" lastModified="155092faf80"/>
+      </target>
+      <target file="startup_stm32f10x_md.o" lastModified="1816a9bddf1">
+         <source file="..\..\..\cmsis_boot\startup\startup_stm32f10x_md.c" lastModified="15d706cd170"/>
+      </target>
+      <target file="debug.o" lastModified="1816a9bee6c">
+         <source file="..\..\..\source\debug\debug.c" lastModified="17f6f1c129d"/>
+      </target>
+      <target file="list.o" lastModified="1816a9be8da">
+         <source file="..\..\..\FreeRTOS\list.c" lastModified="155092faf80"/>
+      </target>
+      <target file="port.o" lastModified="1816a9becb9">
+         <source file="..\..\..\FreeRTOS\portable\GCC\ARM_CM3\port.c" lastModified="15bc2ba58a0"/>
+      </target>
+      <target file="stm32f10x_bkp.o" lastModified="1816a9bf13b">
+         <source file="..\..\..\stm_lib\src\stm32f10x_bkp.c" lastModified="15c0d178c10"/>
+      </target>
+      <target file="timers.o" lastModified="1816a9be240">
+         <source file="..\..\..\FreeRTOS\timers.c" lastModified="155092faf80"/>
+      </target>
+      <target file="stm32f10x_rtc.o" lastModified="1816a9bd7e5">
+         <source file="..\..\..\stm_lib\src\stm32f10x_rtc.c" lastModified="15c0d073860"/>
+      </target>
+      <target file="stm32f10x_gpio.o" lastModified="1816a9bdf92">
+         <source file="..\..\..\stm_lib\src\stm32f10x_gpio.c" lastModified="15bf26baa90"/>
+      </target>
+      <target file="system_stm32f10x.o" lastModified="1816a9bdcec">
+         <source file="..\..\..\cmsis_boot\system_stm32f10x.c" lastModified="15bf26b7bb0"/>
+      </target>
+      <target file="adc.o" lastModified="1816a9bea94">
+         <source file="..\..\..\source\adc\adc.c" lastModified="181535f90a5"/>
+      </target>
+      <target file="stm32f10x_adc.o" lastModified="1816a9be749">
+         <source file="..\..\..\stm_lib\src\stm32f10x_adc.c" lastModified="17bd0264088"/>
+      </target>
+      <target file="stm32f10x_tim.o" lastModified="1816a9bdbec">
+         <source file="..\..\..\stm_lib\src\stm32f10x_tim.c" lastModified="15bf26bb260"/>
+      </target>
+      <target file="usart.o" lastModified="1816a9bf249">
+         <source file="..\..\..\source\usart\usart.c" lastModified="18153690f63"/>
+      </target>
+      <target file="stm32f10x_dma.o" lastModified="1816a9bef16">
+         <source file="..\..\..\stm_lib\src\stm32f10x_dma.c" lastModified="15bf26bc200"/>
+      </target>
+      <target file="heap_1.o" lastModified="1816a9bf0b3">
+         <source file="..\..\..\FreeRTOS\portable\MemMang\heap_1.c" lastModified="155092faf80"/>
+      </target>
+      <target file="main.o" lastModified="1816a9be1d9">
+         <source file="..\..\..\main.c" lastModified="1816a96ff21"/>
+      </target>
+      <target file="stm32f10x_usart.o" lastModified="1816a9be853">
+         <source file="..\..\..\stm_lib\src\stm32f10x_usart.c" lastModified="15bf26baa90"/>
+      </target>
+   </processor>
+</history>
