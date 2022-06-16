@@ -14,7 +14,7 @@
 #include <stdbool.h>
 #include "core_cm3.h"
 //#include "STM32f10x_adc.h"
-
+#include "debug.h"
 #include "FreeRTOS.h"
 #include "task.h"
 #include "queue.h"
@@ -55,24 +55,15 @@ void NVIC_SystemReset(void) {
 
 typedef struct
 {
-    uint32_t card_number;
-    uint8_t card_command;
     xQueueHandle system_queue;
-    //DebugChannel dbg;
-
+    DebugChannel dbg;
     uint32_t card_data;
-
 } System;
 
 typedef enum
 {
-    SYSTEM_COMMAND_CONFIG,
-    SYSTEM_COMMAND_LOCK,
-    SYSTEM_COMMAND_VIB,
     SYSTEM_COMMAND_READER,
-    SYSTEM_COMMAND_RMS,
-    SYSTEM_COMMAND_TIMER,
-    SYSTEM_COMMAND_SENSOR
+    SYSTEM_COMMAND_wifi,
 } SystemCommandType;
 
 typedef struct
@@ -248,19 +239,18 @@ uint8_t SplitString(char *str, char token, char **string_list) {
 	return field_count++;
 }
 
-void MainTask(void * param) {
+void CardHandlerMain(int id, bool is_connected, uint32_t card_number)
+{
+    DebugPrintf(sstem.dbg, "Card Handler: %d\n", card_number);
+    SystemCommand cmd;
+    cmd.cmd = SYSTEM_COMMAND_READER;
+    cmd.data[0] = id;
+    cmd.sub_cmd = is_connected;
+    memcpy(&cmd.data[1], &card_number, 4);
+    xQueueSend(sstem.system_queue, &cmd, 1000);
 
-	//UsartSendString(port, "Starting.\n");
-	while (1) {
-
-		UsartSendString(port, "Main Task\n", 10);
-
-		vTaskDelay(1000);
-	}
 }
 
-
-UsartHandle gps_port;
 
 void GpsTask(void * param) {
 
@@ -280,7 +270,7 @@ int main(void) {
 	//dbg_led = LedCreate(LED_SIGNAL_NORMAL, PORTB, PIN8, NULL);
 	////usart_lock = xSemaphoreCreateBinary();
 	//xSemaphoreGive(usart_lock);
-	gps_port = InitUsart(COM2, 9600, 0, 700);
+	//gps_port = InitUsart(COM2, 9600, 0, 700);
 	//ADC Pin config
 	//gpio_config.GPIO_Mode = GPIO_Mode_IN_FLOATING;
 	//gpio_config.GPIO_Pin = GPIO_Pin_7;
@@ -308,7 +298,12 @@ int main(void) {
 	//ADC_Cmd(ADC1, ENABLE);
 	//ADC_SoftwareStartConvCmd(ADC1, ENABLE);
 	//UsartSendString(port, "HellooooooX\n",12);
-	xTaskCreate(MainTask, "", 1024, NULL, 1, NULL);
+	W26Init();
+	W26Create(0, PORTC, PORTC, EXTI_ID_13, EXTI_ID_14, CardHandlerMain);
+	sstem.dbg = DebugRegister("SYS", SysDbgHandler);
+	sstem.system_queue = xQueueCreate(5, sizeof(SystemCommand));
+
+	//xTaskCreate(MainTask, "", 1024, NULL, 1, NULL);
 	xTaskCreate(GpsTask, "", 1024, NULL, 2, NULL);
 	vTaskStartScheduler();
 

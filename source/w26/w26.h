@@ -16,7 +16,7 @@ typedef enum
 }CardAlarmId;
 
 void W26Init();
-W26Reader W26Create(int reader_id, int port_d0, int port_d1, ExtiId exti_d0, ExtiId exti_d1,W26ReaderCallback callback, AdcChannelId ch);
+W26Reader W26Create(int reader_id, int port_d0, int port_d1, ExtiId exti_d0, ExtiId exti_d1,W26ReaderCallback callback);
 
 
 #endif

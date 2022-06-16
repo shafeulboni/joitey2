@@ -57,6 +57,11 @@
 #define configUSE_CO_ROUTINES 		0
 #define configMAX_CO_ROUTINE_PRIORITIES ( 2 )
 
+#define configUSE_TIMERS                1
+#define configTIMER_TASK_PRIORITY       configMAX_PRIORITIES
+#define configTIMER_QUEUE_LENGTH        15
+#define configTIMER_TASK_STACK_DEPTH    1024
+
 #define configUSE_MUTEXES				0
 #define configUSE_COUNTING_SEMAPHORES 	0
 #define configUSE_ALTERNATIVE_API 		0

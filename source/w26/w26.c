@@ -31,7 +31,6 @@ typedef struct
     ExtiChannel channel_d1;
     xTimerHandle timer;
     W26ReaderCallback callback;
-    AdcChannel channel;
 
     uint32_t cardTempHigh;
     uint32_t cardTemp;
@@ -186,45 +185,11 @@ void CardReaderTask(void *vibtask)
 
     while (1)
     {
-
-        ChannelBuffer adata;
-        if (AdcChannelRead(reader_man.reader_list[0].channel, &adata) == ADC_STATUS_SUCCESS)
-        {
-            uint32_t card_avg = 0;
-            for (size_t i = 0; i < ADC_BUFFER_MAX; i++)
-            {
-                card_avg = card_avg + adata.buffer[i];
-            }
-
-            uint16_t cardvoltage = card_avg / ADC_BUFFER_MAX;
-
-            //DebugPrintf(reader_man.dbg, "Card Reader:%d\n", cardvoltage);
-
-            if (cardvoltage < 200)
-            {
-                if (reader_man.reader_list[0].card_connected == true)
-                {
-                    reader_man.reader_list[0].card_connected = false;
-                    reader_man.reader_list[0].callback(0, false, 0);
-                    DebugPrintf(reader_man.dbg, "Card Reader DC:%d\n", cardvoltage);
-                }
-            }
-            else
-            {
-                if (reader_man.reader_list[0].card_connected == false)
-                {
-                    reader_man.reader_list[0].card_connected = true;
-                    reader_man.reader_list[0].callback(0, true, 0);
-                    DebugPrintf(reader_man.dbg, "Card Reader OK:%d\n", cardvoltage);
-                }
-            }
-        }
-
         if (xSemaphoreTake(reader_man.w26_sem, 1000) == pdTRUE)
         {
             if (wig_available(&reader_man.reader_list[0]))
             {
-                // DebugPrintf(reader_man.dbg, "DEC=%d, Protokol Wiegand-%d\n",  reader_man.reader_list[0].code, reader_man.reader_list[0].wiegandType);
+                 //DebugPrintf(reader_man.dbg, "DEC=%d, Protokol Wiegand-%d\n",  reader_man.reader_list[0].code, reader_man.reader_list[0].wiegandType);
                 if (reader_man.reader_list[0].callback != NULL)
                 {
                     reader_man.reader_list[0].callback(0, true, reader_man.reader_list[0].code);
@@ -292,7 +257,7 @@ void CardTimerHandler(xTimerHandle timer)
     xSemaphoreGive(reader_man.w26_sem);
 }
 
-W26Reader W26Create(int reader_id, int port_d0, int port_d1, ExtiId exti_d0, ExtiId exti_d1, W26ReaderCallback callback, AdcChannelId ch)
+W26Reader W26Create(int reader_id, int port_d0, int port_d1, ExtiId exti_d0, ExtiId exti_d1, W26ReaderCallback callback)
 {
     if (reader_id > 1)
         return NULL;
@@ -309,7 +274,6 @@ W26Reader W26Create(int reader_id, int port_d0, int port_d1, ExtiId exti_d0, Ext
     reader_man.reader_list[reader_id].callback = callback;
     reader_man.reader_list[reader_id].channel_d0 = ExtiChannelCreate(port_d0, exti_d0, EXTI_TRIGGARE_FALLING, ExtiHandlerD0, &reader_man.reader_list[reader_id]);
     reader_man.reader_list[reader_id].channel_d1 = ExtiChannelCreate(port_d1, exti_d1, EXTI_TRIGGARE_FALLING, ExtiHandlerD1, &reader_man.reader_list[reader_id]);
-    reader_man.reader_list[reader_id].channel = AdcChannelCreate(ch);
     reader_man.reader_list[reader_id].timer = xTimerCreate("cardtimer", 30, pdTRUE, &reader_man.reader_list[reader_id], CardTimerHandler);
     ExtiEnable(reader_man.reader_list[reader_id].channel_d0);
     ExtiEnable(reader_man.reader_list[reader_id].channel_d1);
