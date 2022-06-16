@@ -1,1 +1,38 @@
-<history/>
+<?xml version='1.0' encoding='UTF-8'?>
+<history>
+   <processor signature="10.3.1 -mcpu=cortex-m3 -mthumb -g -nostartfiles -Map=display.map -O3 --gc-sections -LC:\CooCox\CoIDE\configuration\ProgramData\display -TC:\CooCox\CoIDE\configuration\ProgramData\display/link.ld -g">
+      <target file="display.elf" lastModified="1816cef2b29">
+         <source file="..\obj\stm32f10x_rtc.o" lastModified="1816ce4d020"/>
+         <source file="..\obj\w26.o" lastModified="1816ce4d1b4"/>
+         <source file="..\obj\stm32f10x_tim.o" lastModified="1816ce4d4cb"/>
+         <source file="..\obj\stm32f10x_dbgmcu.o" lastModified="1816ce4d55f"/>
+         <source file="..\obj\system_stm32f10x.o" lastModified="1816ce4d62e"/>
+         <source file="..\obj\led.o" lastModified="1816ce4d6ee"/>
+         <source file="..\obj\stm32f10x_pwr.o" lastModified="1816ce4d7fa"/>
+         <source file="..\obj\startup_stm32f10x_md.o" lastModified="1816ce4d757"/>
+         <source file="..\obj\stm32f10x_gpio.o" lastModified="1816ce4d951"/>
+         <source file="..\obj\main.o" lastModified="1816cef27d8"/>
+         <source file="..\obj\timers.o" lastModified="1816ce4dc84"/>
+         <source file="..\obj\stm32f10x_crc.o" lastModified="1816ce4dd2f"/>
+         <source file="..\obj\stm32f10x_rcc.o" lastModified="1816ce4de72"/>
+         <source file="..\obj\gpio.o" lastModified="1816ce4df8b"/>
+         <source file="..\obj\stm32f10x_exti.o" lastModified="1816ce5546c"/>
+         <source file="..\obj\tasks.o" lastModified="1816ce4e1eb"/>
+         <source file="..\obj\stm32f10x_adc.o" lastModified="1816ce4e355"/>
+         <source file="..\obj\stm32f10x_usart.o" lastModified="1816ce4e4b0"/>
+         <source file="..\obj\list.o" lastModified="1816ce4e55f"/>
+         <source file="..\obj\exti.o" lastModified="1816ce4e69f"/>
+         <source file="..\obj\adc.o" lastModified="1816ce4e7d8"/>
+         <source file="..\obj\queue.o" lastModified="1816ce4e9b2"/>
+         <source file="..\obj\port.o" lastModified="1816ce4ea5f"/>
+         <source file="..\obj\debug.o" lastModified="1816ce4ec6b"/>
+         <source file="..\obj\stm32f10x_dma.o" lastModified="1816ce4ed3a"/>
+         <source file="..\obj\croutine.o" lastModified="1816ce4eda3"/>
+         <source file="..\obj\event_groups.o" lastModified="1816ce4eea5"/>
+         <source file="..\obj\heap_1.o" lastModified="1816ce4ef47"/>
+         <source file="..\obj\stm32f10x_bkp.o" lastModified="1816ce4effa"/>
+         <source file="..\obj\usart.o" lastModified="1816ce4f152"/>
+         <source file="..\obj\stm32f10x_iwdg.o" lastModified="1816ce4f1f0"/>
+      </target>
+   </processor>
+</history>

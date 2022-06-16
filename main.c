@@ -40,60 +40,6 @@ UsartHandle port;
 #define LED_INACTIVE_LOW_TIME 	12
 
 #define BUFFER_SIZE 100
-//uint8_t serial_buffer[BUFFER_SIZE];
-//char data_buffer[BUFFER_SIZE];
-//volatile uint8_t flag = 0;
-//uint32_t serial_index = 0;
-float temp = 25.00;
-volatile uint8_t adc_flag = 0;
-volatile uint16_t adc_data7 = 300;
-volatile uint16_t adc_data8 = 300;
-volatile uint16_t adc_data9 = 300;
-volatile uint8_t channel = 0;
-
-volatile uint16_t sens_buf[16];
-volatile uint16_t sens_ind = 0;
-
-
-xSemaphoreHandle usart_lock;
-
-typedef union {
-	struct {
-		uint8_t type;
-		union {
-			struct {
-				uint16_t cur1;
-				uint16_t cur2;
-				uint16_t vol1;
-				struct {
-					uint32_t s1 :1;
-					uint32_t s2 :1;
-					uint32_t s3 :1;
-					uint32_t s4 :1;
-					uint32_t s5 :1;
-					uint32_t s6 :1;
-					uint32_t s7 :1;
-					uint32_t s8 :1;
-					uint32_t s9 :1;
-					uint32_t s10 :1;
-					uint32_t s11 :1;
-					uint32_t s12 :1;
-					uint32_t s13 :1;
-					uint32_t s14 :1;
-					uint32_t s15 :1;
-					uint32_t s16 :1;
-					uint32_t s17 :1;
-					uint32_t s18 :1;
-				};
-			};
-			struct {
-				char lat[10];
-				char lon[11];
-			};
-		};
-	};
-	uint8_t data[30];
-} SystemData;
 
 void NVIC_SystemReset(void) {
 	__DSB();
@@ -106,6 +52,41 @@ void NVIC_SystemReset(void) {
 		;
 }
 
+
+typedef struct
+{
+    uint32_t card_number;
+    uint8_t card_command;
+    xQueueHandle system_queue;
+    //DebugChannel dbg;
+
+    uint32_t card_data;
+
+} System;
+
+typedef enum
+{
+    SYSTEM_COMMAND_CONFIG,
+    SYSTEM_COMMAND_LOCK,
+    SYSTEM_COMMAND_VIB,
+    SYSTEM_COMMAND_READER,
+    SYSTEM_COMMAND_RMS,
+    SYSTEM_COMMAND_TIMER,
+    SYSTEM_COMMAND_SENSOR
+} SystemCommandType;
+
+typedef struct
+{
+    struct
+    {
+        SystemCommandType cmd : 3;
+        uint8_t sub_cmd : 5;
+    };
+    uint8_t data[26];
+
+} SystemCommand;
+
+System sstem;
 
 void Watchdog_Config(uint16_t timeout_ms) {
 #ifdef LSI_TIM_MEASURE
@@ -268,185 +249,21 @@ uint8_t SplitString(char *str, char token, char **string_list) {
 }
 
 void MainTask(void * param) {
-	PinHandle s1 = InitPin(PORTB, PIN13, INPUT); ///ok
-	PinHandle s2 = InitPin(PORTA, PIN11, INPUT); ///ok
-	PinHandle s3 = InitPin(PORTB, PIN15, INPUT); ///ok
-	PinHandle s4 = InitPin(PORTB, PIN3, INPUT); ///ok
-	PinHandle s5 = InitPin(PORTB, PIN4, INPUT); ///ok
-	PinHandle s6 = InitPin(PORTB, PIN5, INPUT); ///ok
-	PinHandle s7 = InitPin(PORTA, PIN15, INPUT); ///ok
-	PinHandle s8 = InitPin(PORTB, PIN7, INPUT); ///ok
-	PinHandle s9 = InitPin(PORTB, PIN8, INPUT); ///ok
-	PinHandle s10 = InitPin(PORTB, PIN9, INPUT); ///ok
 
-	PinHandle s11 = InitPin(PORTB, PIN12, INPUT); ///ok
-	PinHandle s12 = InitPin(PORTB, PIN10, INPUT); ///ok
-	PinHandle s13 = InitPin(PORTB, PIN11, INPUT); ///ok
-	PinHandle s14 = InitPin(PORTA, PIN0, INPUT); ///ok
-	PinHandle s15 = InitPin(PORTA, PIN1, INPUT); ///ok
-	PinHandle s16 = InitPin(PORTA, PIN4, INPUT); ///ok
-	PinHandle s17 = InitPin(PORTA, PIN5, INPUT); ///ok
-	PinHandle s18 = InitPin(PORTA, PIN6, INPUT); ///ok 6
-
-	PinHandle rs485_dir = InitPin(PORTA, PIN11, OUTPUT);
-	SetPinState(rs485_dir, HIGH);
 	//UsartSendString(port, "Starting.\n");
 	while (1) {
-		SystemData data;
 
-		memset(data.data, 0, 30);
-		adc_data7 = sens_buf[0];
-		for (int i = 0; i < 16; i++) {
-			adc_data7 = (adc_data7 + sens_buf[i]) / 2;
-		}
-		uint32_t value = adc_data7;
-		value = (value * 536) / 1210;
-		data.cur1 = value;
+		UsartSendString(port, "Main Task\n", 10);
 
-		value = adc_data8;
-		value = (value * 536) / 1210;
-		data.cur2 = value;
-
-		value = adc_data9;
-		value = (value * 536) / 1210;
-		data.vol1 = value;
-
-		if (GetPinState(s1) != HIGH) {
-			data.s1 = true;
-		} else {
-			data.s1 = false;
-		}
-
-		if (GetPinState(s2) != HIGH) {
-			data.s2 = true;
-		} else {
-			data.s2 = false;
-		}
-
-		if (GetPinState(s3) != HIGH) {
-			data.s3 = true;
-		} else {
-			data.s3 = false;
-		}
-
-		if (GetPinState(s4) != HIGH) {
-			data.s4 = true;
-		} else {
-			data.s4 = false;
-		}
-
-		if (GetPinState(s5) != HIGH) {
-			data.s5 = true;
-		} else {
-			data.s5 = false;
-		}
-
-		if (GetPinState(s6) != HIGH) {
-			data.s6 = true;
-		} else {
-			data.s6 = false;
-		}
-
-		if (GetPinState(s7) != HIGH) {
-			data.s7 = true;
-		} else {
-			data.s7 = false;
-		}
-
-		if (GetPinState(s8) != HIGH) {
-			data.s8 = true;
-		} else {
-			data.s8 = false;
-		}
-
-		if (GetPinState(s9) != HIGH) {
-			data.s9 = true;
-		} else {
-			data.s9 = false;
-		}
-
-		if (GetPinState(s10) != HIGH) {
-			data.s10 = true;
-		} else {
-			data.s10 = false;
-		}
-		if (GetPinState(s11) != HIGH) {
-			data.s11 = true;
-		} else {
-			data.s11 = false;
-		}
-		if (GetPinState(s12) != HIGH) {
-			data.s12 = true;
-		} else {
-			data.s12 = false;
-		}
-
-		if (GetPinState(s13) != HIGH) {
-			data.s13 = true;
-		} else {
-			data.s13 = false;
-		}
-
-		if (GetPinState(s14) != HIGH) {
-			data.s14 = true;
-		} else {
-			data.s14 = false;
-		}
-
-		if (GetPinState(s15) != HIGH) {
-			data.s15 = true;
-		} else {
-			data.s15 = false;
-		}
-
-		if (GetPinState(s16) != HIGH) {
-			data.s16 = true;
-		} else {
-			data.s16 = false;
-		}
-
-		if (GetPinState(s17) != HIGH) {
-			data.s17 = true;
-		} else {
-			data.s17 = false;
-		}
-
-		if (GetPinState(s18) != HIGH) {
-			data.s18 = true;
-		} else {
-			data.s18 = false;
-		}
-
-		uint8_t output[25];
-		memset(output, 0, 25);
-		output[0] = 0xF9;
-		output[1] = 16;
-		data.type = 2;
-		memcpy(&output[2], data.data, 16);
-		output[18] = CRC8((const char *) &output[1], 17);
-		if (xSemaphoreTake(usart_lock, 2000) == pdTRUE) {
-			UsartSendBinary(port, output, 19);
-			xSemaphoreGive(usart_lock);
-		}
-		//UsartSendString(port, "dassa\n");
-
-		vTaskDelay(10000);
+		vTaskDelay(1000);
 	}
 }
+
 
 UsartHandle gps_port;
 
 void GpsTask(void * param) {
 
-	char check_str[] = "RMC,";
-	uint8_t check_index = 0;
-	bool packet_start = false;
-	char packet_buffer[200];
-	uint8_t packet_index = 0;
-//	bool gps_state = false;
-	uint8_t skip_count = 0;
-//	LedSchedule(dbg_led, 0, LED_INACTIVE_HIGH_TIME, LED_INACTIVE_LOW_TIME,
-//			LED_ALWAYES_ON_DURATION);
 	while (1) {
 		TogglePinState(pin);
 		vTaskDelay(500);
@@ -463,7 +280,6 @@ int main(void) {
 	//dbg_led = LedCreate(LED_SIGNAL_NORMAL, PORTB, PIN8, NULL);
 	////usart_lock = xSemaphoreCreateBinary();
 	//xSemaphoreGive(usart_lock);
-	GPIO_InitTypeDef gpio_config;
 	gps_port = InitUsart(COM2, 9600, 0, 700);
 	//ADC Pin config
 	//gpio_config.GPIO_Mode = GPIO_Mode_IN_FLOATING;
@@ -491,8 +307,8 @@ int main(void) {
 	//ADC_RegularChannelConfig(ADC1, ADC_Channel_7, 1, ADC_SampleTime_239Cycles5);
 	//ADC_Cmd(ADC1, ENABLE);
 	//ADC_SoftwareStartConvCmd(ADC1, ENABLE);
-	UsartSendString(port, "HellooooooX\n",12);
-	//xTaskCreate(MainTask, "", 1024, NULL, 1, NULL);
+	//UsartSendString(port, "HellooooooX\n",12);
+	xTaskCreate(MainTask, "", 1024, NULL, 1, NULL);
 	xTaskCreate(GpsTask, "", 1024, NULL, 2, NULL);
 	vTaskStartScheduler();
 
