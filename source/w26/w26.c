@@ -11,7 +11,7 @@
 #include "FreeRTOS.h"
 #include "task.h"
 #include "queue.h"
-#include "debug.h"
+//#include "debug.h"
 #include "semphr.h"
 #include "led.h"
 #include "timers.h"
@@ -45,7 +45,7 @@ typedef struct
 typedef struct
 {
     W26ReaderPrv reader_list[2];
-    DebugChannel dbg;
+    //DebugChannel dbg;
     xSemaphoreHandle w26_sem;
 } W26ReaderManager;
 
@@ -189,7 +189,7 @@ void CardReaderTask(void *vibtask)
         {
             if (wig_available(&reader_man.reader_list[0]))
             {
-                 //DebugPrintf(reader_man.dbg, "DEC=%d, Protokol Wiegand-%d\n",  reader_man.reader_list[0].code, reader_man.reader_list[0].wiegandType);
+                // DebugPrintf(reader_man.dbg, "DEC=%d, Protokol Wiegand-%d\n",  reader_man.reader_list[0].code, reader_man.reader_list[0].wiegandType);
                 if (reader_man.reader_list[0].callback != NULL)
                 {
                     reader_man.reader_list[0].callback(0, true, reader_man.reader_list[0].code);
@@ -208,7 +208,7 @@ void W26DebugHandler(char *reply, const char **list, uint16_t len)
 
 void W26Init()
 {
-    reader_man.dbg = DebugRegister("W26", W26DebugHandler);
+    //reader_man.dbg = DebugRegister("W26", W26DebugHandler);
     reader_man.w26_sem = xSemaphoreCreateBinary();
     xTaskCreate(CardReaderTask, "Card", 512, NULL, 2, NULL);
 }
@@ -218,6 +218,7 @@ void ExtiHandlerD0(BaseType_t *woke_token, void *param)
     W26ReaderPrv *w26read = param;
 
     w26read->bitCount++; // Increament bit count for Interrupt connected to D0
+
 
     if (w26read->bitCount > 31) // If bit count more than 31, process high bits
     {
@@ -254,7 +255,8 @@ void ExtiHandlerD1(BaseType_t *woke_token, void *param)
 
 void CardTimerHandler(xTimerHandle timer)
 {
-    xSemaphoreGive(reader_man.w26_sem);
+//	DebugPrintf(reader_man.dbg, "Reader timer\n");
+	xSemaphoreGive(reader_man.w26_sem);
 }
 
 W26Reader W26Create(int reader_id, int port_d0, int port_d1, ExtiId exti_d0, ExtiId exti_d1, W26ReaderCallback callback)

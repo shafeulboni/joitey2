@@ -14,7 +14,7 @@
 #include <stdbool.h>
 #include "core_cm3.h"
 //#include "STM32f10x_adc.h"
-#include "debug.h"
+//#include "debug.h"
 #include "FreeRTOS.h"
 #include "task.h"
 #include "queue.h"
@@ -22,6 +22,8 @@
 
 #include "usart.h"
 #include "w26.h"
+#include "ctype.h"
+#include "math.h"
 
 PinHandle pin;
 UsartHandle port;
@@ -56,7 +58,7 @@ void NVIC_SystemReset(void) {
 typedef struct
 {
     xQueueHandle system_queue;
-    DebugChannel dbg;
+    //DebugChannel dbg;
     uint32_t card_data;
 } System;
 
@@ -241,23 +243,56 @@ uint8_t SplitString(char *str, char token, char **string_list) {
 
 void CardHandlerMain(int id, bool is_connected, uint32_t card_number)
 {
-    DebugPrintf(sstem.dbg, "Card Handler: %d\n", card_number);
     SystemCommand cmd;
     cmd.cmd = SYSTEM_COMMAND_READER;
     cmd.data[0] = id;
     cmd.sub_cmd = is_connected;
     memcpy(&cmd.data[1], &card_number, 4);
     xQueueSend(sstem.system_queue, &cmd, 1000);
-
 }
 
+void card_operation()
+{
+	char buf[10] = {0,};
+	itoa(sstem.card_data,buf,10);
+	UsartSendString(port, "Card Received:", 14);
+	UsartSendString(port, buf, strlen(buf));
+	UsartSendString(port, "\n", 1);
+	sstem.card_data=0;
+}
 
+void SysDbgHandler(char *reply, const char **lst, uint16_t len)
+{
+
+}
 void GpsTask(void * param) {
-
+	UsartSendString(port, "Walton Sanitery Dispenser\n",12);
 	while (1) {
+		SystemCommand cmd;
 		TogglePinState(pin);
-		vTaskDelay(500);
-		UsartSendString(port, "HellooooooX\n",12);
+		vTaskDelay(100);
+		if (xQueueReceive(sstem.system_queue, &cmd, 1000) == pdTRUE)
+		        {
+			 switch (cmd.cmd)
+			            {
+			 	 	 	case SYSTEM_COMMAND_READER:
+			 	 	 		{
+			 	 	 		uint32_t temp_card = 0;
+			 	 	 		memcpy(&temp_card, &cmd.data[1], 4);
+							sstem.card_data = temp_card;
+							card_operation();
+			 	 	 		}
+			 	 	 		break;
+			 	 	 	case SYSTEM_COMMAND_wifi:
+							{
+
+							}
+							break;
+			 	 	 	default:
+			 	 	 	    break;
+			            }
+		        }
+
 	}
 }
 int main(void) {
@@ -266,49 +301,22 @@ int main(void) {
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA | RCC_APB2Periph_GPIOB |RCC_APB2Periph_GPIOC  | RCC_APB2Periph_AFIO, ENABLE);
 	GPIO_PinRemapConfig(GPIO_Remap_SWJ_Disable, ENABLE);
 
-	//LedSystemInit();
-	//dbg_led = LedCreate(LED_SIGNAL_NORMAL, PORTB, PIN8, NULL);
 	////usart_lock = xSemaphoreCreateBinary();
 	//xSemaphoreGive(usart_lock);
-	//gps_port = InitUsart(COM2, 9600, 0, 700);
-	//ADC Pin config
-	//gpio_config.GPIO_Mode = GPIO_Mode_IN_FLOATING;
-	//gpio_config.GPIO_Pin = GPIO_Pin_7;
-	//GPIO_Init(GPIOA, &gpio_config);
-	//gpio_config.GPIO_Pin = GPIO_Pin_0 | GPIO_Pin_1;
-	//GPIO_Init(GPIOB, &gpio_config);
+	//wifi_port = InitUsart(COM2, 9600, 0, 700);
 
 	port = InitUsart(COM1, 115200, 0, 512);
 	//gps_port = InitUsart(COM2, 9600, 0, 512);
 	pin = InitPin(PORTA, PIN8, OUTPUT);
-
-	//RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1, ENABLE);
-	//ADC_InitTypeDef adc_config;
-	//adc_config.ADC_Mode = ADC_Mode_Independent;
-	//adc_config.ADC_ContinuousConvMode = DISABLE;
-	//adc_config.ADC_NbrOfChannel = 1;
-	//adc_config.ADC_DataAlign = ADC_DataAlign_Right;
-	//adc_config.ADC_ExternalTrigConv = ADC_ExternalTrigConv_None;
-	//adc_config.ADC_ScanConvMode = DISABLE;
-	//ADC_Init(ADC1, &adc_config);
-	///ADC_ITConfig(ADC1, ADC_IT_EOC, ENABLE);
-//	NVIC_EnableIRQ(ADC1_2_IRQn);
-	//NVIC_SetPriority(ADC1_2_IRQn, 12);
-	//ADC_RegularChannelConfig(ADC1, ADC_Channel_7, 1, ADC_SampleTime_239Cycles5);
-	//ADC_Cmd(ADC1, ENABLE);
-	//ADC_SoftwareStartConvCmd(ADC1, ENABLE);
-	//UsartSendString(port, "HellooooooX\n",12);
+	wifi_port = InitUsart(COM2, 9600, 0, 700);
 	W26Init();
 	W26Create(0, PORTC, PORTC, EXTI_ID_13, EXTI_ID_14, CardHandlerMain);
-	sstem.dbg = DebugRegister("SYS", SysDbgHandler);
 	sstem.system_queue = xQueueCreate(5, sizeof(SystemCommand));
-
-	//xTaskCreate(MainTask, "", 1024, NULL, 1, NULL);
 	xTaskCreate(GpsTask, "", 1024, NULL, 2, NULL);
 	vTaskStartScheduler();
 
 	while (1) {
-		UsartSendString(port, "Code shouldnot reach here\n",26);
+		UsartSendString(port, "Code should not reach here\n",26);
 		NVIC_SystemReset();
 	}
 

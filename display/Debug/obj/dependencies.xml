@@ -68,7 +68,7 @@
       </source>
       <source file="..\..\..\cmsis_boot\stm32f10x_conf.h" lastModified="1816bcbcf80">
       </source>
-      <source file="..\..\..\source\w26\w26.c" lastModified="1816d02ac7a">
+      <source file="..\..\..\source\w26\w26.c" lastModified="1817c53285c">
          <include file="..\..\..\cmsis_boot\stm32f10x.h"/>
          <include file="..\..\..\stm_lib\inc\stm32f10x_rcc.h"/>
          <include file="..\..\..\stm_lib\inc\stm32f10x_gpio.h"/>
@@ -78,7 +78,6 @@
          <include file="..\..\..\FreeRTOS\include\FreeRTOS.h"/>
          <include file="..\..\..\FreeRTOS\include\task.h"/>
          <include file="..\..\..\FreeRTOS\include\queue.h"/>
-         <include file="..\..\..\source\debug\debug.h"/>
          <include file="..\..\..\FreeRTOS\include\semphr.h"/>
          <include file="..\..\..\source\led\led.h"/>
          <include file="..\..\..\FreeRTOS\include\timers.h"/>
