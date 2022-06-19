@@ -258,6 +258,7 @@ void card_operation()
 	UsartSendString(port, "Card Received:", 14);
 	UsartSendString(port, buf, strlen(buf));
 	UsartSendString(port, "\n", 1);
+	Sendforaccess(sstem.card_data);
 	sstem.card_data=0;
 }
 
@@ -295,6 +296,7 @@ void GpsTask(void * param) {
 
 	}
 }
+
 int main(void) {
 
 	SystemCoreClockUpdate();
@@ -308,7 +310,7 @@ int main(void) {
 	port = InitUsart(COM1, 115200, 0, 512);
 	//gps_port = InitUsart(COM2, 9600, 0, 512);
 	pin = InitPin(PORTA, PIN8, OUTPUT);
-	wifi_port = InitUsart(COM2, 9600, 0, 700);
+	//wifi_port = InitUsart(COM2, 9600, 0, 700);
 	W26Init();
 	W26Create(0, PORTC, PORTC, EXTI_ID_13, EXTI_ID_14, CardHandlerMain);
 	sstem.system_queue = xQueueCreate(5, sizeof(SystemCommand));
