@@ -103,9 +103,9 @@
     <File name="stm_lib/src/stm32f10x_tim.c" path="stm_lib/src/stm32f10x_tim.c" type="1"/>
     <File name="cmsis_boot/startup" path="" type="2"/>
     <File name="source/led" path="" type="2"/>
-    <File name="source/exti/exti.c" path="source/exti/exti.c" type="1"/>
     <File name="rtos/include/portable.h" path="FreeRTOS/include/portable.h" type="1"/>
     <File name="source/wifi" path="" type="2"/>
+    <File name="source/exti/exti.c" path="source/exti/exti.c" type="1"/>
     <File name="cmsis/core_cmFunc.h" path="cmsis/core_cmFunc.h" type="1"/>
     <File name="rtos/include/timers.h" path="FreeRTOS/include/timers.h" type="1"/>
     <File name="stm_lib/src/stm32f10x_iwdg.c" path="stm_lib/src/stm32f10x_iwdg.c" type="1"/>
@@ -113,8 +113,8 @@
     <File name="rtos/portable/portmacro.h" path="FreeRTOS/portable/GCC/ARM_CM3/portmacro.h" type="1"/>
     <File name="stm_lib/inc/stm32f10x_dbgmcu.h" path="stm_lib/inc/stm32f10x_dbgmcu.h" type="1"/>
     <File name="cmsis_boot/stm32f10x_conf.h" path="cmsis_boot/stm32f10x_conf.h" type="1"/>
-    <File name="rtos/include" path="" type="2"/>
     <File name="rtos/include/StackMacros.h" path="FreeRTOS/include/StackMacros.h" type="1"/>
+    <File name="rtos/include" path="" type="2"/>
     <File name="source/gpio" path="" type="2"/>
     <File name="rtos/croutine.c" path="FreeRTOS/croutine.c" type="1"/>
     <File name="stm_lib/src/stm32f10x_adc.c" path="stm_lib/src/stm32f10x_adc.c" type="1"/>
@@ -173,9 +173,9 @@
     <File name="rtos/list.c" path="FreeRTOS/list.c" type="1"/>
     <File name="stm_lib/src/stm32f10x_crc.c" path="stm_lib/src/stm32f10x_crc.c" type="1"/>
     <File name="source/wifi/wifi.h" path="source/rms/wifi.h" type="1"/>
-    <File name="FreeRTOSConfig.h" path="FreeRTOSConfig.h" type="1"/>
     <File name="stm_lib/inc" path="" type="2"/>
     <File name="source/debug" path="" type="2"/>
+    <File name="FreeRTOSConfig.h" path="FreeRTOSConfig.h" type="1"/>
     <File name="stm_lib/inc/stm32f10x_crc.h" path="stm_lib/inc/stm32f10x_crc.h" type="1"/>
     <File name="stm_lib/src/stm32f10x_rtc.c" path="stm_lib/src/stm32f10x_rtc.c" type="1"/>
     <File name="main.c" path="main.c" type="1"/>

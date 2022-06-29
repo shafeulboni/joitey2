@@ -266,12 +266,13 @@ void SysDbgHandler(char *reply, const char **lst, uint16_t len)
 {
 
 }
-void GpsTask(void * param) {
-	UsartSendString(port, "Walton Sanitery Dispenser\n",12);
+void MainTask(void * param) {
+	UsartSendString(port, "Walton Sanitery Dispenser\n",26);
 	while (1) {
 		SystemCommand cmd;
 		TogglePinState(pin);
-		vTaskDelay(100);
+		//vTaskDelay(100);
+		//UsartSendString(port, "Main Task Checking\n",19);
 		if (xQueueReceive(sstem.system_queue, &cmd, 1000) == pdTRUE)
 		        {
 			 switch (cmd.cmd)
@@ -296,7 +297,10 @@ void GpsTask(void * param) {
 
 	}
 }
-
+void WifiHandler(uint8_t *replywifi)
+{
+	UsartSendString(port, replywifi,20);
+}
 int main(void) {
 
 	SystemCoreClockUpdate();
@@ -313,8 +317,9 @@ int main(void) {
 	//wifi_port = InitUsart(COM2, 9600, 0, 700);
 	W26Init();
 	W26Create(0, PORTC, PORTC, EXTI_ID_13, EXTI_ID_14, CardHandlerMain);
+	WifiInit(WifiHandler);
 	sstem.system_queue = xQueueCreate(5, sizeof(SystemCommand));
-	xTaskCreate(GpsTask, "", 1024, NULL, 2, NULL);
+	xTaskCreate(MainTask, "", 1024, NULL, 2, NULL);
 	vTaskStartScheduler();
 
 	while (1) {
