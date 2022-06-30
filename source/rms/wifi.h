@@ -17,7 +17,7 @@ typedef union {
 	uint8_t data[30];
 } ReceiveData;
 
-typedef void (*WifiCallBack)( uint8_t *replywifi);
+typedef void (*WifiCallBack)( char *msg, int status, int length);
 
 void WifiInit(WifiCallBack callback);
 void Sendforaccess(uint32_t cardnumber);

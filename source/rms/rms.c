@@ -36,31 +36,28 @@ void Sendforaccess(uint32_t cardnumber)
 {
 	char buf[10] = {0,};
 	itoa(cardnumber,buf,10);
-	UsartSendString(wifi_man.port, "a", 1);
+	UsartSendString(wifi_man.port, "#", 1);
 	UsartSendString(wifi_man.port, buf, strlen(buf));
 	UsartSendString(wifi_man.port, "k\n", 2);
 
 }
 
-void Disp_integer(int data)
-{
-	char buf[10] = {0,};
-	itoa(data,buf,10);
-	//UsartSendString(wifi_man.port, "a", 1);
-	UsartSendString(wifi_man.port, buf, strlen(buf));
-	//UsartSendString(wifi_man.port, "k\n", 2);
-}
 
-void Stringcheck(char *param)
+
+int Stringcheck(char *param)
 {
 
 	if(strcmp(param, "Success>")==0)
 	{
-		UsartSendString(wifi_man.port, "Alhamdullillah\n", 15);
+		//UsartSendString(wifi_man.port, "Alhamdullillah\n", 15);
+		//wifi_man.callback(1);
+		return 1;
 	}
 	else
 	{
-		UsartSendString(wifi_man.port, "Try Next time\n", 14);
+		//UsartSendString(wifi_man.port, "Try Next time\n", 14);
+		//wifi_man.callback(2);
+		return 2;
 	}
 }
 
@@ -80,11 +77,11 @@ void WifiTask(void *param)
     	vTaskDelay(5);
     	if (message == true)
 			{
+    		wifi_man.callback(arr,Stringcheck(arr),wifi_man.index);
 
-			wifi_man.callback(arr);
 			//UsartSendString(wifi_man.port, "Message ok\n", 11);
-    		UsartSendString(wifi_man.port, arr, wifi_man.index);
-    		Stringcheck(arr);
+    		//UsartSendString(wifi_man.port, arr, wifi_man.index);
+    		//Stringcheck(arr, wifi_man.index);
 			frame_start = false;
 			//if(wifi_man.reply[])
 			memset(arr, 0, 30);
@@ -101,7 +98,7 @@ void WifiTask(void *param)
 
         	if (data_receive == 0X3C && frame_start != true)
         	            {
-        					UsartSendString(wifi_man.port, "Frame started.\n",15);
+        					//UsartSendString(wifi_man.port, "Frame started.\n",15);
         	                frame_start = true;
         	                wifi_man.index=0;
         	            }
@@ -132,7 +129,7 @@ void RmsDebugHandler(char *reply, const char **lst, uint16_t len)
 
 void WifiInit(WifiCallBack callback)
 {
-    wifi_man.port = InitUsart(COM2, 115200, 0, 48);
+    wifi_man.port = InitUsart(COM2, 9600, 0, 48);
     wifi_man.index = 0;
     wifi_man.callback = callback;
     xTaskCreate(WifiTask, "", 512, NULL, 3, NULL);

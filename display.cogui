@@ -18,21 +18,22 @@
 <part id="3"/>
 <part id="4"/>
 <part id="5"/>
+<part id="6"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="D:/Git Codes/Jotiey/main.c" title="main.c" tooltip="D:/Git Codes/Jotiey/main.c" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="D:/Git Codes/Jotiey/main.c" title="main.c" tooltip="D:/Git Codes/Jotiey/main.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/display/main.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="6822" selectionTopPixel="2260"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="7037" selectionTopPixel="2540"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="wifi.c" partName="wifi.c" path="D:/Git Codes/Jotiey/source/rms/rms.c" title="wifi.c" tooltip="D:/Git Codes/Jotiey/source/rms/rms.c" workbook="DefaultEditorWorkbook">
+<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="wifi.c" partName="wifi.c" path="D:/Git Codes/Jotiey/source/rms/rms.c" title="wifi.c" tooltip="D:/Git Codes/Jotiey/source/rms/rms.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/display/source/wifi/wifi.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2727" selectionTopPixel="1380"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1862" selectionTopPixel="1320"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="wifi.h" partName="wifi.h" path="D:/Git Codes/Jotiey/source/rms/wifi.h" title="wifi.h" tooltip="D:/Git Codes/Jotiey/source/rms/wifi.h" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/display/source/wifi/wifi.h"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="197" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="419" selectionTopPixel="0"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="w26.c" partName="w26.c" path="D:/Git Codes/Jotiey/source/w26/w26.c" title="w26.c" tooltip="D:/Git Codes/Jotiey/source/w26/w26.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/display/source/w26/w26.c"/>
@@ -44,7 +45,11 @@
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="usart.c" partName="usart.c" path="D:/Git Codes/Jotiey/source/usart/usart.c" title="usart.c" tooltip="D:/Git Codes/Jotiey/source/usart/usart.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/display/source/usart/usart.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="9" selectionOffset="4813" selectionTopPixel="540"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="6135" selectionTopPixel="1300"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="usart.h" partName="usart.h" path="D:/Git Codes/Jotiey/source/usart/usart.h" title="usart.h" tooltip="D:/Git Codes/Jotiey/source/usart/usart.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/display/source/usart/usart.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="120" selectionTopPixel="0"/>
 </editor>
 </editors>
 <views>
@@ -55,13 +60,14 @@
 <element path="/display/cmsis_boot"/>
 <element path="/display/rtos"/>
 <element path="/display/source"/>
+<element path="/display/source/usart"/>
 <element path="/display/source/w26"/>
 <element path="/display/source/wifi"/>
 <element path="/display/stm_lib"/>
 <element path="/display/stm_lib/inc"/>
 </expanded>
 <selection>
-<element path="/display/source/w26/w26.h"/>
+<element path="/display/source/usart/usart.h"/>
 </selection>
 </viewState>
 </view>
@@ -317,161 +323,161 @@
 <workingSets/>
 <navigationHistory>
 <editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/display/source/wifi/wifi.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/display/main.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/display/source/wifi/wifi.h"/>
-<editor factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.07\arm-none-eabi\include\sys\_intsup.h" project="display"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/display/source/wifi/wifi.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/display/source/usart/usart.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/display/source/wifi/wifi.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/display/source/usart/usart.h"/>
 </editors>
-<item historyLabel="wifi.h" index="2">
-<position info="not_deleted" x="240" y="0"/>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="6858" y="0"/>
 </item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="6760" y="0"/>
+<item historyLabel="wifi.c" index="1">
+<position info="not_deleted" x="889" y="0"/>
 </item>
-<item historyLabel="wifi.c" index="0">
+<item historyLabel="usart.c" index="2">
 <position/>
 </item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="6496" y="0"/>
+<item historyLabel="usart.h" index="4">
+<position info="not_deleted" x="156" y="0"/>
 </item>
-<item historyLabel="wifi.c" index="0">
-<position info="not_deleted" x="1684" y="0"/>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="6858" y="0"/>
 </item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="6264" y="0"/>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="7008" y="0"/>
 </item>
-<item historyLabel="wifi.c" index="0">
-<position info="not_deleted" x="1370" y="0"/>
+<item historyLabel="wifi.c" index="1">
+<position info="not_deleted" x="1282" y="0"/>
 </item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="6932" y="0"/>
-</item>
-<item historyLabel="wifi.c" index="0">
+<item historyLabel="wifi.h" index="3">
 <position/>
 </item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="6458" y="0"/>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="6802" y="0"/>
 </item>
-<item historyLabel="wifi.c" index="0">
-<position info="not_deleted" x="1142" y="0"/>
+<item historyLabel="usart.c" index="2">
+<position info="not_deleted" x="6144" y="0"/>
 </item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="6458" y="0"/>
+<item historyLabel="usart.c" index="2">
+<position info="not_deleted" x="6372" y="0"/>
 </item>
-<item historyLabel="wifi.c" index="0">
-<position info="not_deleted" x="1473" y="0"/>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="6912" y="0"/>
 </item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="6857" y="0"/>
+<item historyLabel="usart.c" index="2">
+<position info="not_deleted" x="6369" y="0"/>
 </item>
-<item historyLabel="wifi.c" index="0">
-<position info="not_deleted" x="1473" y="0"/>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="7029" y="0"/>
 </item>
-<item historyLabel="wifi.c" index="0">
-<position info="not_deleted" x="2198" y="0"/>
+<item historyLabel="usart.h" index="4">
+<position info="not_deleted" x="120" y="0"/>
 </item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="6302" y="0"/>
+<item historyLabel="wifi.c" index="1">
+<position info="not_deleted" x="1192" y="0"/>
 </item>
-<item historyLabel="wifi.c" index="0">
+<item historyLabel="wifi.h" index="3">
+<position info="not_deleted" x="271" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="7029" y="0"/>
+</item>
+<item historyLabel="wifi.c" index="1">
+<position info="not_deleted" x="1192" y="0"/>
+</item>
+<item historyLabel="wifi.c" index="1">
+<position info="not_deleted" x="909" y="4"/>
+</item>
+<item historyLabel="wifi.c" index="1">
+<position info="not_deleted" x="1143" y="40"/>
+</item>
+<item historyLabel="wifi.c" index="1">
+<position info="not_deleted" x="1165" y="0"/>
+</item>
+<item historyLabel="wifi.h" index="3">
+<position info="not_deleted" x="271" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="6536" y="0"/>
+</item>
+<item historyLabel="wifi.c" index="1">
+<position info="not_deleted" x="1192" y="0"/>
+</item>
+<item historyLabel="wifi.h" index="3">
+<position info="not_deleted" x="392" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="6536" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="6784" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
 <position/>
 </item>
-<item historyLabel="_intsup.h" index="3">
-<position info="not_deleted" x="1281" y="0"/>
+<item historyLabel="wifi.c" index="1">
+<position info="not_deleted" x="1192" y="0"/>
 </item>
-<item historyLabel="wifi.c" index="0">
-<position info="not_deleted" x="606" y="0"/>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="5866" y="139"/>
 </item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="7461" y="0"/>
+<item historyLabel="usart.c" index="2">
+<position info="not_deleted" x="6135" y="0"/>
 </item>
-<item historyLabel="wifi.c" index="0">
-<position info="not_deleted" x="1591" y="0"/>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="7009" y="29"/>
 </item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="6896" y="0"/>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="7063" y="0"/>
 </item>
-<item historyLabel="wifi.c" index="0">
-<position info="not_deleted" x="1591" y="0"/>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="7414" y="0"/>
 </item>
-<item historyLabel="wifi.c" index="0">
-<position info="not_deleted" x="644" y="0"/>
+<item historyLabel="wifi.h" index="3">
+<position info="not_deleted" x="392" y="0"/>
 </item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="6884" y="0"/>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="7414" y="0"/>
 </item>
-<item historyLabel="wifi.c" index="0">
-<position info="not_deleted" x="528" y="1"/>
+<item historyLabel="wifi.c" index="1">
+<position info="not_deleted" x="1597" y="0"/>
 </item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="6822" y="0"/>
+<item historyLabel="wifi.h" index="3">
+<position info="not_deleted" x="419" y="0"/>
 </item>
-<item historyLabel="wifi.h" index="2">
-<position info="not_deleted" x="197" y="0"/>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="6969" y="6"/>
 </item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="6857" y="0"/>
+<item historyLabel="wifi.c" index="1">
+<position info="not_deleted" x="1501" y="0"/>
 </item>
-<item historyLabel="wifi.c" index="0">
-<position/>
+<item historyLabel="wifi.h" index="3">
+<position info="not_deleted" x="419" y="0"/>
 </item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="7303" y="0"/>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="7789" y="0"/>
 </item>
-<item historyLabel="wifi.c" index="0">
-<position/>
+<item historyLabel="wifi.c" index="1">
+<position info="not_deleted" x="1501" y="0"/>
 </item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="7303" y="0"/>
+<item historyLabel="wifi.c" index="1">
+<position info="not_deleted" x="1451" y="0"/>
 </item>
-<item historyLabel="wifi.c" index="0">
-<position info="not_deleted" x="1025" y="0"/>
+<item historyLabel="wifi.c" index="1">
+<position info="not_deleted" x="1282" y="0"/>
 </item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="6770" y="0"/>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="7037" y="0"/>
 </item>
-<item historyLabel="wifi.c" index="0">
-<position info="not_deleted" x="1025" y="0"/>
+<item historyLabel="wifi.c" index="1">
+<position info="not_deleted" x="692" y="0"/>
 </item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="6851" y="0"/>
+<item historyLabel="wifi.h" index="3">
+<position info="not_deleted" x="419" y="0"/>
 </item>
-<item historyLabel="wifi.c" index="0">
-<position info="not_deleted" x="1025" y="0"/>
-</item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="6285" y="0"/>
-</item>
-<item historyLabel="wifi.c" index="0">
-<position info="not_deleted" x="1025" y="0"/>
-</item>
-<item historyLabel="wifi.c" index="0">
-<position/>
-</item>
-<item historyLabel="wifi.c" index="0">
-<position info="not_deleted" x="1512" y="0"/>
-</item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="6285" y="0"/>
-</item>
-<item historyLabel="wifi.c" index="0">
-<position info="not_deleted" x="1512" y="0"/>
-</item>
-<item historyLabel="wifi.c" index="0">
-<position info="not_deleted" x="1511" y="0"/>
-</item>
-<item historyLabel="wifi.c" index="0">
-<position info="not_deleted" x="1510" y="0"/>
-</item>
-<item historyLabel="wifi.c" index="0">
-<position info="not_deleted" x="2727" y="0"/>
-</item>
-<item historyLabel="usart.c" index="4">
-<position info="not_deleted" x="4813" y="9"/>
-</item>
-<item active="true" historyLabel="main.c" index="1">
-<position info="not_deleted" x="6285" y="0"/>
+<item active="true" historyLabel="wifi.c" index="1">
+<position info="not_deleted" x="692" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -480,6 +486,9 @@
 <actionBarAdvisor/>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="usart.h" tooltip="display/source/usart/usart.h">
+<persistable path="/display/source/usart/usart.h"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="usart.c" tooltip="display/source/usart/usart.c">
 <persistable path="/display/source/usart/usart.c"/>
 </file>
@@ -521,9 +530,6 @@
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="modem.h" tooltip="lock/user/driver/include/modem.h">
 <persistable path="/lock/user/driver/include/modem.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="semphr.h" tooltip="lock/source/include/semphr.h">
-<persistable path="/lock/source/include/semphr.h"/>
 </file>
 </mruList>
 </workbench>

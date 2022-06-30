@@ -282,6 +282,14 @@ UsartHandle InitUsart(ComId id, uint32_t baud, uint32_t tx_buffer_limit, uint32_
 	return usart;
 }
 
+void Disp_integer(UsartHandle handle, int value)
+{
+	char buf[10] = {0,};
+		itoa(value,buf,10);
+		//UsartSendString(port, "Card Received:", 14);
+		UsartSendString(handle, buf, strlen(buf));
+
+}
 void UsartSendByte(UsartHandle handle, uint8_t data)
 {
 	assert_param(handle);

@@ -30,6 +30,6 @@ uint32_t UsartReceiveByte(UsartHandle handle, uint8_t * data);
 void ResetUsartBuffer(UsartHandle handle);
 uint32_t IsInitialised(UsartHandle handle);
 
-
+void Disp_integer(UsartHandle handle, int data);
 
 #endif //USAR_H

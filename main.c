@@ -297,9 +297,14 @@ void MainTask(void * param) {
 
 	}
 }
-void WifiHandler(uint8_t *replywifi)
+
+void WifiHandler(char *msg, int status, int length)
 {
-	UsartSendString(port, replywifi,20);
+	Disp_integer(port, length);
+	UsartSendString(port, msg,length);
+	UsartSendString(port, " ",1);
+	Disp_integer(port, status);
+	UsartSendString(port, "\n",1);
 }
 int main(void) {
 
