@@ -9,7 +9,7 @@ c:/program files (x86)/gnu arm embedded toolchain/10 2021.07/bin/../lib/gcc/arm-
 c:/program files (x86)/gnu arm embedded toolchain/10 2021.07/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg.a(lib_a-stpcpy.o)
                               ..\obj\debug.o (stpcpy)
 c:/program files (x86)/gnu arm embedded toolchain/10 2021.07/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg.a(lib_a-strcmp.o)
-                              ..\obj\debug.o (strcmp)
+                              ..\obj\rms.o (strcmp)
 c:/program files (x86)/gnu arm embedded toolchain/10 2021.07/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg.a(lib_a-strcpy.o)
                               ..\obj\debug.o (strcpy)
 c:/program files (x86)/gnu arm embedded toolchain/10 2021.07/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg.a(lib_a-strlen-stub.o)
@@ -314,9 +314,6 @@ Discarded input sections
  .debug_frame   0x00000000       0xbc ..\obj\led.o
  .ARM.attributes
                 0x00000000       0x2d ..\obj\led.o
- .text          0x00000000        0x0 ..\obj\startup_stm32f10x_md.o
- .data          0x00000000        0x0 ..\obj\startup_stm32f10x_md.o
- .bss           0x00000000        0x0 ..\obj\startup_stm32f10x_md.o
  .text          0x00000000        0x0 ..\obj\stm32f10x_pwr.o
  .data          0x00000000        0x0 ..\obj\stm32f10x_pwr.o
  .bss           0x00000000        0x0 ..\obj\stm32f10x_pwr.o
@@ -350,6 +347,9 @@ Discarded input sections
  .debug_frame   0x00000000       0xb8 ..\obj\stm32f10x_pwr.o
  .ARM.attributes
                 0x00000000       0x2d ..\obj\stm32f10x_pwr.o
+ .text          0x00000000        0x0 ..\obj\startup_stm32f10x_md.o
+ .data          0x00000000        0x0 ..\obj\startup_stm32f10x_md.o
+ .bss           0x00000000        0x0 ..\obj\startup_stm32f10x_md.o
  .text          0x00000000        0x0 ..\obj\stm32f10x_gpio.o
  .data          0x00000000        0x0 ..\obj\stm32f10x_gpio.o
  .bss           0x00000000        0x0 ..\obj\stm32f10x_gpio.o
@@ -381,6 +381,10 @@ Discarded input sections
                 0x00000000        0xc ..\obj\stm32f10x_gpio.o
  .text          0x00000000        0x0 ..\obj\rms.o
  .data          0x00000000        0x0 ..\obj\rms.o
+ .text.Disp_integer
+                0x00000000       0x34 ..\obj\rms.o
+ .text.Stringcheck
+                0x00000000       0x38 ..\obj\rms.o
  .text.RmsDebugHandler
                 0x00000000        0x4 ..\obj\rms.o
  .text          0x00000000        0x0 ..\obj\main.o
@@ -979,7 +983,7 @@ Linker script and memory map
 
                 0x20005000                _eram = 0x20005000
 
-.text           0x08000000     0x3465
+.text           0x08000000     0x34c9
  *(.isr_vector)
  .isr_vector    0x08000000      0x10c ..\obj\startup_stm32f10x_md.o
                 0x08000000                g_pfnVectors
@@ -1067,289 +1071,289 @@ Linker script and memory map
                 0x080008f8       0x2c ..\obj\stm32f10x_gpio.o
                 0x080008f8                GPIO_EXTILineConfig
  .text.WifiTask
-                0x08000924       0xb8 ..\obj\rms.o
+                0x08000924       0xf0 ..\obj\rms.o
                 0x08000924                WifiTask
  .text.Sendforaccess
-                0x080009dc       0x4c ..\obj\rms.o
-                0x080009dc                Sendforaccess
+                0x08000a14       0x4c ..\obj\rms.o
+                0x08000a14                Sendforaccess
  .text.WifiInit
-                0x08000a28       0x50 ..\obj\rms.o
-                0x08000a28                WifiInit
+                0x08000a60       0x50 ..\obj\rms.o
+                0x08000a60                WifiInit
  .text.CardHandlerMain
-                0x08000a78       0x34 ..\obj\main.o
-                0x08000a78                CardHandlerMain
+                0x08000ab0       0x34 ..\obj\main.o
+                0x08000ab0                CardHandlerMain
  .text.WifiHandler
-                0x08000aac       0x10 ..\obj\main.o
-                0x08000aac                WifiHandler
+                0x08000ae4       0x10 ..\obj\main.o
+                0x08000ae4                WifiHandler
  .text.NVIC_SystemReset
-                0x08000abc       0x20 ..\obj\main.o
-                0x08000abc                NVIC_SystemReset
+                0x08000af4       0x20 ..\obj\main.o
+                0x08000af4                NVIC_SystemReset
  .text.prvGetRegistersFromStack
-                0x08000adc       0x28 ..\obj\main.o
-                0x08000adc                prvGetRegistersFromStack
+                0x08000b14       0x28 ..\obj\main.o
+                0x08000b14                prvGetRegistersFromStack
  .text.HardFault_Handler
-                0x08000b04       0x1c ..\obj\main.o
-                0x08000b04                HardFault_Handler
+                0x08000b3c       0x1c ..\obj\main.o
+                0x08000b3c                HardFault_Handler
  .text.card_operation
-                0x08000b20       0x58 ..\obj\main.o
-                0x08000b20                card_operation
+                0x08000b58       0x58 ..\obj\main.o
+                0x08000b58                card_operation
  .text.MainTask
-                0x08000b78       0x44 ..\obj\main.o
-                0x08000b78                MainTask
+                0x08000bb0       0x44 ..\obj\main.o
+                0x08000bb0                MainTask
  .text.startup.main
-                0x08000bbc       0xa8 ..\obj\main.o
-                0x08000bbc                main
+                0x08000bf4       0xa8 ..\obj\main.o
+                0x08000bf4                main
  .text.prvSwitchTimerLists
-                0x08000c64       0x74 ..\obj\timers.o
+                0x08000c9c       0x74 ..\obj\timers.o
  .text.prvTimerTask
-                0x08000cd8      0x1ec ..\obj\timers.o
+                0x08000d10      0x1ec ..\obj\timers.o
  .text.xTimerCreateTimerTask
-                0x08000ec4       0x68 ..\obj\timers.o
-                0x08000ec4                xTimerCreateTimerTask
+                0x08000efc       0x68 ..\obj\timers.o
+                0x08000efc                xTimerCreateTimerTask
  .text.xTimerCreate
-                0x08000f2c       0x78 ..\obj\timers.o
-                0x08000f2c                xTimerCreate
+                0x08000f64       0x78 ..\obj\timers.o
+                0x08000f64                xTimerCreate
  .text.xTimerGenericCommand
-                0x08000fa4       0x58 ..\obj\timers.o
-                0x08000fa4                xTimerGenericCommand
+                0x08000fdc       0x58 ..\obj\timers.o
+                0x08000fdc                xTimerGenericCommand
  .text.RCC_GetClocksFreq
-                0x08000ffc       0x90 ..\obj\stm32f10x_rcc.o
-                0x08000ffc                RCC_GetClocksFreq
+                0x08001034       0x90 ..\obj\stm32f10x_rcc.o
+                0x08001034                RCC_GetClocksFreq
  .text.RCC_APB2PeriphClockCmd
-                0x0800108c       0x18 ..\obj\stm32f10x_rcc.o
-                0x0800108c                RCC_APB2PeriphClockCmd
+                0x080010c4       0x18 ..\obj\stm32f10x_rcc.o
+                0x080010c4                RCC_APB2PeriphClockCmd
  .text.RCC_APB1PeriphClockCmd
-                0x080010a4       0x18 ..\obj\stm32f10x_rcc.o
-                0x080010a4                RCC_APB1PeriphClockCmd
- .text.InitPin  0x080010bc       0x8c ..\obj\gpio.o
-                0x080010bc                InitPin
+                0x080010dc       0x18 ..\obj\stm32f10x_rcc.o
+                0x080010dc                RCC_APB1PeriphClockCmd
+ .text.InitPin  0x080010f4       0x8c ..\obj\gpio.o
+                0x080010f4                InitPin
  .text.TogglePinState
-                0x08001148       0x58 ..\obj\gpio.o
-                0x08001148                TogglePinState
+                0x08001180       0x58 ..\obj\gpio.o
+                0x08001180                TogglePinState
  .text.EXTI_Init
-                0x080011a0       0x80 ..\obj\stm32f10x_exti.o
-                0x080011a0                EXTI_Init
+                0x080011d8       0x80 ..\obj\stm32f10x_exti.o
+                0x080011d8                EXTI_Init
  .text.EXTI_GetITStatus
-                0x08001220       0x1c ..\obj\stm32f10x_exti.o
-                0x08001220                EXTI_GetITStatus
+                0x08001258       0x1c ..\obj\stm32f10x_exti.o
+                0x08001258                EXTI_GetITStatus
  .text.EXTI_ClearITPendingBit
-                0x0800123c        0xc ..\obj\stm32f10x_exti.o
-                0x0800123c                EXTI_ClearITPendingBit
+                0x08001274        0xc ..\obj\stm32f10x_exti.o
+                0x08001274                EXTI_ClearITPendingBit
  .text.prvIdleTask
-                0x08001248        0x4 ..\obj\tasks.o
+                0x08001280        0x4 ..\obj\tasks.o
  .text.xTaskCreate
-                0x0800124c      0x210 ..\obj\tasks.o
-                0x0800124c                xTaskCreate
+                0x08001284      0x210 ..\obj\tasks.o
+                0x08001284                xTaskCreate
  .text.vTaskStartScheduler
-                0x0800145c      0x170 ..\obj\tasks.o
-                0x0800145c                vTaskStartScheduler
+                0x08001494      0x170 ..\obj\tasks.o
+                0x08001494                vTaskStartScheduler
  .text.vTaskSuspendAll
-                0x080015cc       0x14 ..\obj\tasks.o
-                0x080015cc                vTaskSuspendAll
+                0x08001604       0x14 ..\obj\tasks.o
+                0x08001604                vTaskSuspendAll
  .text.xTaskGetTickCount
-                0x080015e0        0xc ..\obj\tasks.o
-                0x080015e0                xTaskGetTickCount
+                0x08001618        0xc ..\obj\tasks.o
+                0x08001618                xTaskGetTickCount
  .text.xTaskGetTickCountFromISR
-                0x080015ec        0xc ..\obj\tasks.o
-                0x080015ec                xTaskGetTickCountFromISR
+                0x08001624        0xc ..\obj\tasks.o
+                0x08001624                xTaskGetTickCountFromISR
  .text.xTaskIncrementTick
-                0x080015f8       0xf8 ..\obj\tasks.o
-                0x080015f8                xTaskIncrementTick
+                0x08001630       0xf8 ..\obj\tasks.o
+                0x08001630                xTaskIncrementTick
  .text.xTaskResumeAll
-                0x080016f0       0xec ..\obj\tasks.o
-                0x080016f0                xTaskResumeAll
+                0x08001728       0xec ..\obj\tasks.o
+                0x08001728                xTaskResumeAll
  .text.vTaskDelay
-                0x080017dc       0x78 ..\obj\tasks.o
-                0x080017dc                vTaskDelay
+                0x08001814       0x78 ..\obj\tasks.o
+                0x08001814                vTaskDelay
  .text.vTaskSwitchContext
-                0x08001854       0x48 ..\obj\tasks.o
-                0x08001854                vTaskSwitchContext
+                0x0800188c       0x48 ..\obj\tasks.o
+                0x0800188c                vTaskSwitchContext
  .text.vTaskPlaceOnEventList
-                0x0800189c       0x58 ..\obj\tasks.o
-                0x0800189c                vTaskPlaceOnEventList
+                0x080018d4       0x58 ..\obj\tasks.o
+                0x080018d4                vTaskPlaceOnEventList
  .text.vTaskPlaceOnEventListRestricted
-                0x080018f4       0x64 ..\obj\tasks.o
-                0x080018f4                vTaskPlaceOnEventListRestricted
+                0x0800192c       0x64 ..\obj\tasks.o
+                0x0800192c                vTaskPlaceOnEventListRestricted
  .text.xTaskRemoveFromEventList
-                0x08001958       0x64 ..\obj\tasks.o
-                0x08001958                xTaskRemoveFromEventList
+                0x08001990       0x64 ..\obj\tasks.o
+                0x08001990                xTaskRemoveFromEventList
  .text.vTaskSetTimeOutState
-                0x080019bc       0x14 ..\obj\tasks.o
-                0x080019bc                vTaskSetTimeOutState
+                0x080019f4       0x14 ..\obj\tasks.o
+                0x080019f4                vTaskSetTimeOutState
  .text.xTaskCheckForTimeOut
-                0x080019d0       0x50 ..\obj\tasks.o
-                0x080019d0                xTaskCheckForTimeOut
+                0x08001a08       0x50 ..\obj\tasks.o
+                0x08001a08                xTaskCheckForTimeOut
  .text.vTaskMissedYield
-                0x08001a20       0x10 ..\obj\tasks.o
-                0x08001a20                vTaskMissedYield
+                0x08001a58       0x10 ..\obj\tasks.o
+                0x08001a58                vTaskMissedYield
  .text.xTaskGetSchedulerState
-                0x08001a30       0x20 ..\obj\tasks.o
-                0x08001a30                xTaskGetSchedulerState
- .text.ADC_Cmd  0x08001a50       0x14 ..\obj\stm32f10x_adc.o
-                0x08001a50                ADC_Cmd
+                0x08001a68       0x20 ..\obj\tasks.o
+                0x08001a68                xTaskGetSchedulerState
+ .text.ADC_Cmd  0x08001a88       0x14 ..\obj\stm32f10x_adc.o
+                0x08001a88                ADC_Cmd
  .text.ADC_SoftwareStartConvCmd
-                0x08001a64       0x14 ..\obj\stm32f10x_adc.o
-                0x08001a64                ADC_SoftwareStartConvCmd
+                0x08001a9c       0x14 ..\obj\stm32f10x_adc.o
+                0x08001a9c                ADC_SoftwareStartConvCmd
  .text.ADC_GetConversionValue
-                0x08001a78        0x8 ..\obj\stm32f10x_adc.o
-                0x08001a78                ADC_GetConversionValue
+                0x08001ab0        0x8 ..\obj\stm32f10x_adc.o
+                0x08001ab0                ADC_GetConversionValue
  .text.ADC_GetITStatus
-                0x08001a80       0x18 ..\obj\stm32f10x_adc.o
-                0x08001a80                ADC_GetITStatus
+                0x08001ab8       0x18 ..\obj\stm32f10x_adc.o
+                0x08001ab8                ADC_GetITStatus
  .text.ADC_ClearITPendingBit
-                0x08001a98        0x8 ..\obj\stm32f10x_adc.o
-                0x08001a98                ADC_ClearITPendingBit
+                0x08001ad0        0x8 ..\obj\stm32f10x_adc.o
+                0x08001ad0                ADC_ClearITPendingBit
  .text.USART_Init
-                0x08001aa0       0xb8 ..\obj\stm32f10x_usart.o
-                0x08001aa0                USART_Init
+                0x08001ad8       0xb8 ..\obj\stm32f10x_usart.o
+                0x08001ad8                USART_Init
  .text.USART_Cmd
-                0x08001b58       0x1c ..\obj\stm32f10x_usart.o
-                0x08001b58                USART_Cmd
+                0x08001b90       0x1c ..\obj\stm32f10x_usart.o
+                0x08001b90                USART_Cmd
  .text.USART_ITConfig
-                0x08001b74       0x34 ..\obj\stm32f10x_usart.o
-                0x08001b74                USART_ITConfig
+                0x08001bac       0x34 ..\obj\stm32f10x_usart.o
+                0x08001bac                USART_ITConfig
  .text.USART_SendData
-                0x08001ba8        0x8 ..\obj\stm32f10x_usart.o
-                0x08001ba8                USART_SendData
+                0x08001be0        0x8 ..\obj\stm32f10x_usart.o
+                0x08001be0                USART_SendData
  .text.USART_ReceiveData
-                0x08001bb0        0x8 ..\obj\stm32f10x_usart.o
-                0x08001bb0                USART_ReceiveData
+                0x08001be8        0x8 ..\obj\stm32f10x_usart.o
+                0x08001be8                USART_ReceiveData
  .text.USART_GetFlagStatus
-                0x08001bb8        0xc ..\obj\stm32f10x_usart.o
-                0x08001bb8                USART_GetFlagStatus
+                0x08001bf0        0xc ..\obj\stm32f10x_usart.o
+                0x08001bf0                USART_GetFlagStatus
  .text.USART_GetITStatus
-                0x08001bc4       0x44 ..\obj\stm32f10x_usart.o
-                0x08001bc4                USART_GetITStatus
+                0x08001bfc       0x44 ..\obj\stm32f10x_usart.o
+                0x08001bfc                USART_GetITStatus
  .text.USART_ClearITPendingBit
-                0x08001c08       0x10 ..\obj\stm32f10x_usart.o
-                0x08001c08                USART_ClearITPendingBit
+                0x08001c40       0x10 ..\obj\stm32f10x_usart.o
+                0x08001c40                USART_ClearITPendingBit
  .text.vListInitialise
-                0x08001c18       0x18 ..\obj\list.o
-                0x08001c18                vListInitialise
+                0x08001c50       0x18 ..\obj\list.o
+                0x08001c50                vListInitialise
  .text.vListInitialiseItem
-                0x08001c30        0x8 ..\obj\list.o
-                0x08001c30                vListInitialiseItem
+                0x08001c68        0x8 ..\obj\list.o
+                0x08001c68                vListInitialiseItem
  .text.vListInsertEnd
-                0x08001c38       0x1c ..\obj\list.o
-                0x08001c38                vListInsertEnd
+                0x08001c70       0x1c ..\obj\list.o
+                0x08001c70                vListInsertEnd
  .text.vListInsert
-                0x08001c54       0x30 ..\obj\list.o
-                0x08001c54                vListInsert
+                0x08001c8c       0x30 ..\obj\list.o
+                0x08001c8c                vListInsert
  .text.uxListRemove
-                0x08001c84       0x24 ..\obj\list.o
-                0x08001c84                uxListRemove
+                0x08001cbc       0x24 ..\obj\list.o
+                0x08001cbc                uxListRemove
  .text.ExtiChannelCreate
-                0x08001ca8       0x38 ..\obj\exti.o
-                0x08001ca8                ExtiChannelCreate
+                0x08001ce0       0x38 ..\obj\exti.o
+                0x08001ce0                ExtiChannelCreate
  .text.ExtiEnable
-                0x08001ce0      0x274 ..\obj\exti.o
-                0x08001ce0                ExtiEnable
+                0x08001d18      0x274 ..\obj\exti.o
+                0x08001d18                ExtiEnable
  .text.EXTI0_IRQHandler
-                0x08001f54       0x50 ..\obj\exti.o
-                0x08001f54                EXTI0_IRQHandler
+                0x08001f8c       0x50 ..\obj\exti.o
+                0x08001f8c                EXTI0_IRQHandler
  .text.EXTI1_IRQHandler
-                0x08001fa4       0x54 ..\obj\exti.o
-                0x08001fa4                EXTI1_IRQHandler
+                0x08001fdc       0x54 ..\obj\exti.o
+                0x08001fdc                EXTI1_IRQHandler
  .text.EXTI2_IRQHandler
-                0x08001ff8       0x54 ..\obj\exti.o
-                0x08001ff8                EXTI2_IRQHandler
+                0x08002030       0x54 ..\obj\exti.o
+                0x08002030                EXTI2_IRQHandler
  .text.EXTI3_IRQHandler
-                0x0800204c       0x54 ..\obj\exti.o
-                0x0800204c                EXTI3_IRQHandler
+                0x08002084       0x54 ..\obj\exti.o
+                0x08002084                EXTI3_IRQHandler
  .text.EXTI4_IRQHandler
-                0x080020a0       0x54 ..\obj\exti.o
-                0x080020a0                EXTI4_IRQHandler
+                0x080020d8       0x54 ..\obj\exti.o
+                0x080020d8                EXTI4_IRQHandler
  .text.EXTI9_5_IRQHandler
-                0x080020f4       0xbc ..\obj\exti.o
-                0x080020f4                EXTI9_5_IRQHandler
+                0x0800212c       0xbc ..\obj\exti.o
+                0x0800212c                EXTI9_5_IRQHandler
  .text.EXTI15_10_IRQHandler
-                0x080021b0       0xe4 ..\obj\exti.o
-                0x080021b0                EXTI15_10_IRQHandler
+                0x080021e8       0xe4 ..\obj\exti.o
+                0x080021e8                EXTI15_10_IRQHandler
  .text.ADC1_2_IRQHandler
-                0x08002294       0x84 ..\obj\adc.o
-                0x08002294                ADC1_2_IRQHandler
+                0x080022cc       0x84 ..\obj\adc.o
+                0x080022cc                ADC1_2_IRQHandler
  .text.xQueueGenericCreate
-                0x08002318       0x74 ..\obj\queue.o
-                0x08002318                xQueueGenericCreate
+                0x08002350       0x74 ..\obj\queue.o
+                0x08002350                xQueueGenericCreate
  .text.xQueueGenericSend
-                0x0800238c      0x318 ..\obj\queue.o
-                0x0800238c                xQueueGenericSend
+                0x080023c4      0x318 ..\obj\queue.o
+                0x080023c4                xQueueGenericSend
  .text.xQueueGenericSendFromISR
-                0x080026a4       0xfc ..\obj\queue.o
-                0x080026a4                xQueueGenericSendFromISR
+                0x080026dc       0xfc ..\obj\queue.o
+                0x080026dc                xQueueGenericSendFromISR
  .text.xQueueGiveFromISR
-                0x080027a0       0x78 ..\obj\queue.o
-                0x080027a0                xQueueGiveFromISR
+                0x080027d8       0x78 ..\obj\queue.o
+                0x080027d8                xQueueGiveFromISR
  .text.xQueueGenericReceive
-                0x08002818      0x2bc ..\obj\queue.o
-                0x08002818                xQueueGenericReceive
+                0x08002850      0x2bc ..\obj\queue.o
+                0x08002850                xQueueGenericReceive
  .text.vQueueWaitForMessageRestricted
-                0x08002ad4       0xc8 ..\obj\queue.o
-                0x08002ad4                vQueueWaitForMessageRestricted
+                0x08002b0c       0xc8 ..\obj\queue.o
+                0x08002b0c                vQueueWaitForMessageRestricted
  .text.prvTaskExitError
-                0x08002b9c       0x14 ..\obj\port.o
+                0x08002bd4       0x14 ..\obj\port.o
  .text.prvPortStartFirstTask
-                0x08002bb0       0x20 ..\obj\port.o
+                0x08002be8       0x20 ..\obj\port.o
  .text.pxPortInitialiseStack
-                0x08002bd0       0x24 ..\obj\port.o
-                0x08002bd0                pxPortInitialiseStack
- *fill*         0x08002bf4        0xc 
+                0x08002c08       0x24 ..\obj\port.o
+                0x08002c08                pxPortInitialiseStack
+ *fill*         0x08002c2c        0x4 
  .text.SVC_Handler
-                0x08002c00       0x28 ..\obj\port.o
-                0x08002c00                SVC_Handler
+                0x08002c30       0x28 ..\obj\port.o
+                0x08002c30                SVC_Handler
  .text.vPortEnterCritical
-                0x08002c28       0x20 ..\obj\port.o
-                0x08002c28                vPortEnterCritical
+                0x08002c58       0x20 ..\obj\port.o
+                0x08002c58                vPortEnterCritical
  .text.vPortExitCritical
-                0x08002c48       0x14 ..\obj\port.o
-                0x08002c48                vPortExitCritical
- *fill*         0x08002c5c        0x4 
+                0x08002c78       0x14 ..\obj\port.o
+                0x08002c78                vPortExitCritical
+ *fill*         0x08002c8c        0x4 
  .text.PendSV_Handler
-                0x08002c60       0x48 ..\obj\port.o
-                0x08002c60                PendSV_Handler
+                0x08002c90       0x48 ..\obj\port.o
+                0x08002c90                PendSV_Handler
  .text.SysTick_Handler
-                0x08002ca8       0x2c ..\obj\port.o
-                0x08002ca8                SysTick_Handler
+                0x08002cd8       0x2c ..\obj\port.o
+                0x08002cd8                SysTick_Handler
  .text.vPortSetupTimerInterrupt
-                0x08002cd4       0x14 ..\obj\port.o
-                0x08002cd4                vPortSetupTimerInterrupt
+                0x08002d04       0x14 ..\obj\port.o
+                0x08002d04                vPortSetupTimerInterrupt
  .text.xPortStartScheduler
-                0x08002ce8       0x34 ..\obj\port.o
-                0x08002ce8                xPortStartScheduler
+                0x08002d18       0x34 ..\obj\port.o
+                0x08002d18                xPortStartScheduler
  .text.pvPortMalloc
-                0x08002d1c       0x50 ..\obj\heap_1.o
-                0x08002d1c                pvPortMalloc
+                0x08002d4c       0x50 ..\obj\heap_1.o
+                0x08002d4c                pvPortMalloc
  .text.vPortFree
-                0x08002d6c        0x4 ..\obj\heap_1.o
-                0x08002d6c                vPortFree
+                0x08002d9c        0x4 ..\obj\heap_1.o
+                0x08002d9c                vPortFree
  .text.ConfigUsartGpio
-                0x08002d70       0xb8 ..\obj\usart.o
-                0x08002d70                ConfigUsartGpio
+                0x08002da0       0xb8 ..\obj\usart.o
+                0x08002da0                ConfigUsartGpio
  .text.InitUsart
-                0x08002e28      0x12c ..\obj\usart.o
-                0x08002e28                InitUsart
+                0x08002e58      0x12c ..\obj\usart.o
+                0x08002e58                InitUsart
  .text.UsartSendString
-                0x08002f54       0x58 ..\obj\usart.o
-                0x08002f54                UsartSendString
+                0x08002f84       0x58 ..\obj\usart.o
+                0x08002f84                UsartSendString
  .text.UsartReceiveByte
-                0x08002fac       0x18 ..\obj\usart.o
-                0x08002fac                UsartReceiveByte
+                0x08002fdc       0x18 ..\obj\usart.o
+                0x08002fdc                UsartReceiveByte
  .text.USART1_IRQHandler
-                0x08002fc4       0x64 ..\obj\usart.o
-                0x08002fc4                USART1_IRQHandler
+                0x08002ff4       0x64 ..\obj\usart.o
+                0x08002ff4                USART1_IRQHandler
  .text.USART2_IRQHandler
-                0x08003028       0x64 ..\obj\usart.o
-                0x08003028                USART2_IRQHandler
- .text.itoa     0x0800308c       0x30 c:/program files (x86)/gnu arm embedded toolchain/10 2021.07/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg.a(lib_a-itoa.o)
-                0x0800308c                itoa
- .text          0x080030bc       0xec c:/program files (x86)/gnu arm embedded toolchain/10 2021.07/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg.a(lib_a-memcpy.o)
-                0x080030bc                memcpy
- .text.memset   0x080031a8       0xa4 c:/program files (x86)/gnu arm embedded toolchain/10 2021.07/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg.a(lib_a-memset.o)
-                0x080031a8                memset
- .text.strlen   0x0800324c       0x5c c:/program files (x86)/gnu arm embedded toolchain/10 2021.07/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg.a(lib_a-strlen-stub.o)
-                0x0800324c                strlen
- .text.__utoa   0x080032a8       0x9c c:/program files (x86)/gnu arm embedded toolchain/10 2021.07/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg.a(lib_a-utoa.o)
-                0x080032a8                __utoa
+                0x08003058       0x64 ..\obj\usart.o
+                0x08003058                USART2_IRQHandler
+ .text.itoa     0x080030bc       0x30 c:/program files (x86)/gnu arm embedded toolchain/10 2021.07/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg.a(lib_a-itoa.o)
+                0x080030bc                itoa
+ .text          0x080030ec       0xec c:/program files (x86)/gnu arm embedded toolchain/10 2021.07/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg.a(lib_a-memcpy.o)
+                0x080030ec                memcpy
+ .text.memset   0x080031d8       0xa4 c:/program files (x86)/gnu arm embedded toolchain/10 2021.07/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg.a(lib_a-memset.o)
+                0x080031d8                memset
+ .text.strlen   0x0800327c       0x5c c:/program files (x86)/gnu arm embedded toolchain/10 2021.07/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg.a(lib_a-strlen-stub.o)
+                0x0800327c                strlen
+ .text.__utoa   0x080032d8       0x9c c:/program files (x86)/gnu arm embedded toolchain/10 2021.07/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg.a(lib_a-utoa.o)
+                0x080032d8                __utoa
  *(.init)
  *(.fini)
  *crtbegin.o(.ctors)
@@ -1364,52 +1368,52 @@ Linker script and memory map
  *(.dtors)
  *(.rodata*)
  .rodata.str1.4
-                0x08003344       0x12 ..\obj\w26.o
- *fill*         0x08003356        0x2 
+                0x08003374       0x12 ..\obj\w26.o
+ *fill*         0x08003386        0x2 
  .rodata.str1.4
-                0x08003358       0x27 ..\obj\rms.o
-                                 0x29 (size before relaxing)
- *fill*         0x0800337f        0x1 
+                0x08003388       0x5b ..\obj\rms.o
+                                 0x5d (size before relaxing)
+ *fill*         0x080033e3        0x1 
  .rodata.str1.4
-                0x08003380       0x4c ..\obj\main.o
+                0x080033e4       0x4c ..\obj\main.o
                                  0x50 (size before relaxing)
  .rodata.str1.4
-                0x080033cc        0x8 ..\obj\timers.o
- .rodata        0x080033d4       0x3c ..\obj\gpio.o
- .rodata        0x08003410       0x30 ..\obj\usart.o
+                0x08003430        0x8 ..\obj\timers.o
+ .rodata        0x08003438       0x3c ..\obj\gpio.o
+ .rodata        0x08003474       0x30 ..\obj\usart.o
  .rodata.__utoa.str1.4
-                0x08003440       0x25 c:/program files (x86)/gnu arm embedded toolchain/10 2021.07/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg.a(lib_a-utoa.o)
+                0x080034a4       0x25 c:/program files (x86)/gnu arm embedded toolchain/10 2021.07/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg.a(lib_a-utoa.o)
  *(.eh_fram e*)
 
-.glue_7         0x08003468        0x0
- .glue_7        0x08003468        0x0 linker stubs
+.glue_7         0x080034cc        0x0
+ .glue_7        0x080034cc        0x0 linker stubs
 
-.glue_7t        0x08003468        0x0
- .glue_7t       0x08003468        0x0 linker stubs
+.glue_7t        0x080034cc        0x0
+ .glue_7t       0x080034cc        0x0 linker stubs
 
-.vfp11_veneer   0x08003468        0x0
- .vfp11_veneer  0x08003468        0x0 linker stubs
+.vfp11_veneer   0x080034cc        0x0
+ .vfp11_veneer  0x080034cc        0x0 linker stubs
 
-.v4_bx          0x08003468        0x0
- .v4_bx         0x08003468        0x0 linker stubs
+.v4_bx          0x080034cc        0x0
+ .v4_bx         0x080034cc        0x0 linker stubs
 
-.iplt           0x08003468        0x0
- .iplt          0x08003468        0x0 ..\obj\w26.o
+.iplt           0x080034cc        0x0
+ .iplt          0x080034cc        0x0 ..\obj\w26.o
 
-.rel.dyn        0x08003468        0x0
- .rel.iplt      0x08003468        0x0 ..\obj\w26.o
+.rel.dyn        0x080034cc        0x0
+ .rel.iplt      0x080034cc        0x0 ..\obj\w26.o
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x08003465                __exidx_start = .
+                0x080034c9                __exidx_start = .
 
 .ARM.exidx
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x08003465                __exidx_end = .
-                0x08003465                __etext = .
-                0x08003465                _sidata = __etext
+                0x080034c9                __exidx_end = .
+                0x080034c9                __etext = .
+                0x080034c9                _sidata = __etext
 
-.data           0x20000000       0x2c load address 0x08003465
+.data           0x20000000       0x2c load address 0x080034c9
                 0x20000000                __data_start__ = .
                 0x20000000                _sdata = __data_start__
  *(vtable)
@@ -1438,10 +1442,10 @@ Linker script and memory map
                 0x2000002c                __data_end__ = .
                 0x2000002c                _edata = __data_end__
 
-.igot.plt       0x2000002c        0x0 load address 0x08003494
+.igot.plt       0x2000002c        0x0 load address 0x080034f8
  .igot.plt      0x2000002c        0x0 ..\obj\w26.o
 
-.bss            0x2000002c     0x4394 load address 0x08003494
+.bss            0x2000002c     0x4394 load address 0x080034f8
                 0x2000002c                . = ALIGN (0x4)
                 0x2000002c                __bss_start__ = .
                 0x2000002c                _sbss = __bss_start__
@@ -1486,7 +1490,7 @@ Linker script and memory map
  *(.heap*)
                 0x200043c0                __HeapLimit = .
 
-.co_stack       0x200043c0      0x400 load address 0x08007828
+.co_stack       0x200043c0      0x400 load address 0x0800788c
                 0x200043c0                . = ALIGN (0x8)
  *(.co_stack .co_stack.*)
  .co_stack      0x200043c0      0x400 ..\obj\startup_stm32f10x_md.o
@@ -1501,8 +1505,8 @@ LOAD ..\obj\stm32f10x_tim.o
 LOAD ..\obj\stm32f10x_dbgmcu.o
 LOAD ..\obj\system_stm32f10x.o
 LOAD ..\obj\led.o
-LOAD ..\obj\startup_stm32f10x_md.o
 LOAD ..\obj\stm32f10x_pwr.o
+LOAD ..\obj\startup_stm32f10x_md.o
 LOAD ..\obj\stm32f10x_gpio.o
 LOAD ..\obj\rms.o
 LOAD ..\obj\main.o
@@ -1535,72 +1539,72 @@ END GROUP
 OUTPUT(display.elf elf32-littlearm)
 LOAD linker stubs
 
-.debug_info     0x00000000     0xebde
+.debug_info     0x00000000     0xed15
  .debug_info    0x00000000      0xb0c ..\obj\w26.o
  .debug_info    0x00000b0c      0x4ea ..\obj\system_stm32f10x.o
  .debug_info    0x00000ff6      0x133 ..\obj\startup_stm32f10x_md.o
  .debug_info    0x00001129      0x924 ..\obj\stm32f10x_gpio.o
- .debug_info    0x00001a4d      0x59d ..\obj\rms.o
- .debug_info    0x00001fea      0xe4e ..\obj\main.o
- .debug_info    0x00002e38     0x138e ..\obj\timers.o
- .debug_info    0x000041c6      0xa0c ..\obj\stm32f10x_rcc.o
- .debug_info    0x00004bd2      0x9fc ..\obj\gpio.o
- .debug_info    0x000055ce      0x370 ..\obj\stm32f10x_exti.o
- .debug_info    0x0000593e     0x1e07 ..\obj\tasks.o
- .debug_info    0x00007745      0xd5c ..\obj\stm32f10x_adc.o
- .debug_info    0x000084a1      0xc0e ..\obj\stm32f10x_usart.o
- .debug_info    0x000090af      0x2cf ..\obj\list.o
- .debug_info    0x0000937e     0x1279 ..\obj\exti.o
- .debug_info    0x0000a5f7     0x11b5 ..\obj\adc.o
- .debug_info    0x0000b7ac     0x1a34 ..\obj\queue.o
- .debug_info    0x0000d1e0      0x32f ..\obj\port.o
- .debug_info    0x0000d50f      0x1c9 ..\obj\heap_1.o
- .debug_info    0x0000d6d8     0x1506 ..\obj\usart.o
+ .debug_info    0x00001a4d      0x6d4 ..\obj\rms.o
+ .debug_info    0x00002121      0xe4e ..\obj\main.o
+ .debug_info    0x00002f6f     0x138e ..\obj\timers.o
+ .debug_info    0x000042fd      0xa0c ..\obj\stm32f10x_rcc.o
+ .debug_info    0x00004d09      0x9fc ..\obj\gpio.o
+ .debug_info    0x00005705      0x370 ..\obj\stm32f10x_exti.o
+ .debug_info    0x00005a75     0x1e07 ..\obj\tasks.o
+ .debug_info    0x0000787c      0xd5c ..\obj\stm32f10x_adc.o
+ .debug_info    0x000085d8      0xc0e ..\obj\stm32f10x_usart.o
+ .debug_info    0x000091e6      0x2cf ..\obj\list.o
+ .debug_info    0x000094b5     0x1279 ..\obj\exti.o
+ .debug_info    0x0000a72e     0x11b5 ..\obj\adc.o
+ .debug_info    0x0000b8e3     0x1a34 ..\obj\queue.o
+ .debug_info    0x0000d317      0x32f ..\obj\port.o
+ .debug_info    0x0000d646      0x1c9 ..\obj\heap_1.o
+ .debug_info    0x0000d80f     0x1506 ..\obj\usart.o
 
-.debug_abbrev   0x00000000     0x3191
+.debug_abbrev   0x00000000     0x31ef
  .debug_abbrev  0x00000000      0x2f9 ..\obj\w26.o
  .debug_abbrev  0x000002f9      0x1a8 ..\obj\system_stm32f10x.o
  .debug_abbrev  0x000004a1       0xee ..\obj\startup_stm32f10x_md.o
  .debug_abbrev  0x0000058f      0x233 ..\obj\stm32f10x_gpio.o
- .debug_abbrev  0x000007c2      0x1d8 ..\obj\rms.o
- .debug_abbrev  0x0000099a      0x39e ..\obj\main.o
- .debug_abbrev  0x00000d38      0x2de ..\obj\timers.o
- .debug_abbrev  0x00001016      0x27f ..\obj\stm32f10x_rcc.o
- .debug_abbrev  0x00001295      0x2a6 ..\obj\gpio.o
- .debug_abbrev  0x0000153b      0x1d2 ..\obj\stm32f10x_exti.o
- .debug_abbrev  0x0000170d      0x436 ..\obj\tasks.o
- .debug_abbrev  0x00001b43      0x20d ..\obj\stm32f10x_adc.o
- .debug_abbrev  0x00001d50      0x1fa ..\obj\stm32f10x_usart.o
- .debug_abbrev  0x00001f4a      0x110 ..\obj\list.o
- .debug_abbrev  0x0000205a      0x357 ..\obj\exti.o
- .debug_abbrev  0x000023b1      0x383 ..\obj\adc.o
- .debug_abbrev  0x00002734      0x2e0 ..\obj\queue.o
- .debug_abbrev  0x00002a14      0x223 ..\obj\port.o
- .debug_abbrev  0x00002c37      0x133 ..\obj\heap_1.o
- .debug_abbrev  0x00002d6a      0x427 ..\obj\usart.o
+ .debug_abbrev  0x000007c2      0x236 ..\obj\rms.o
+ .debug_abbrev  0x000009f8      0x39e ..\obj\main.o
+ .debug_abbrev  0x00000d96      0x2de ..\obj\timers.o
+ .debug_abbrev  0x00001074      0x27f ..\obj\stm32f10x_rcc.o
+ .debug_abbrev  0x000012f3      0x2a6 ..\obj\gpio.o
+ .debug_abbrev  0x00001599      0x1d2 ..\obj\stm32f10x_exti.o
+ .debug_abbrev  0x0000176b      0x436 ..\obj\tasks.o
+ .debug_abbrev  0x00001ba1      0x20d ..\obj\stm32f10x_adc.o
+ .debug_abbrev  0x00001dae      0x1fa ..\obj\stm32f10x_usart.o
+ .debug_abbrev  0x00001fa8      0x110 ..\obj\list.o
+ .debug_abbrev  0x000020b8      0x357 ..\obj\exti.o
+ .debug_abbrev  0x0000240f      0x383 ..\obj\adc.o
+ .debug_abbrev  0x00002792      0x2e0 ..\obj\queue.o
+ .debug_abbrev  0x00002a72      0x223 ..\obj\port.o
+ .debug_abbrev  0x00002c95      0x133 ..\obj\heap_1.o
+ .debug_abbrev  0x00002dc8      0x427 ..\obj\usart.o
 
-.debug_loc      0x00000000     0xa389
+.debug_loc      0x00000000     0xa483
  .debug_loc     0x00000000      0x866 ..\obj\w26.o
  .debug_loc     0x00000866       0xd6 ..\obj\system_stm32f10x.o
  .debug_loc     0x0000093c     0x1542 ..\obj\stm32f10x_gpio.o
- .debug_loc     0x00001e7e       0xc8 ..\obj\rms.o
- .debug_loc     0x00001f46      0x7aa ..\obj\main.o
- .debug_loc     0x000026f0      0xf06 ..\obj\timers.o
- .debug_loc     0x000035f6      0x6fb ..\obj\stm32f10x_rcc.o
- .debug_loc     0x00003cf1      0x68b ..\obj\gpio.o
- .debug_loc     0x0000437c      0x1cf ..\obj\stm32f10x_exti.o
- .debug_loc     0x0000454b     0x17b4 ..\obj\tasks.o
- .debug_loc     0x00005cff      0xa74 ..\obj\stm32f10x_adc.o
- .debug_loc     0x00006773      0x88d ..\obj\stm32f10x_usart.o
- .debug_loc     0x00007000       0xa4 ..\obj\list.o
- .debug_loc     0x000070a4      0x94e ..\obj\exti.o
- .debug_loc     0x000079f2      0x47f ..\obj\adc.o
- .debug_loc     0x00007e71     0x175a ..\obj\queue.o
- .debug_loc     0x000095cb       0xaf ..\obj\port.o
- .debug_loc     0x0000967a       0xc0 ..\obj\heap_1.o
- .debug_loc     0x0000973a      0xc4f ..\obj\usart.o
+ .debug_loc     0x00001e7e      0x1c2 ..\obj\rms.o
+ .debug_loc     0x00002040      0x7aa ..\obj\main.o
+ .debug_loc     0x000027ea      0xf06 ..\obj\timers.o
+ .debug_loc     0x000036f0      0x6fb ..\obj\stm32f10x_rcc.o
+ .debug_loc     0x00003deb      0x68b ..\obj\gpio.o
+ .debug_loc     0x00004476      0x1cf ..\obj\stm32f10x_exti.o
+ .debug_loc     0x00004645     0x17b4 ..\obj\tasks.o
+ .debug_loc     0x00005df9      0xa74 ..\obj\stm32f10x_adc.o
+ .debug_loc     0x0000686d      0x88d ..\obj\stm32f10x_usart.o
+ .debug_loc     0x000070fa       0xa4 ..\obj\list.o
+ .debug_loc     0x0000719e      0x94e ..\obj\exti.o
+ .debug_loc     0x00007aec      0x47f ..\obj\adc.o
+ .debug_loc     0x00007f6b     0x175a ..\obj\queue.o
+ .debug_loc     0x000096c5       0xaf ..\obj\port.o
+ .debug_loc     0x00009774       0xc0 ..\obj\heap_1.o
+ .debug_loc     0x00009834      0xc4f ..\obj\usart.o
 
-.debug_aranges  0x00000000      0xa68
+.debug_aranges  0x00000000      0xa78
  .debug_aranges
                 0x00000000       0x78 ..\obj\w26.o
  .debug_aranges
@@ -1610,83 +1614,83 @@ LOAD linker stubs
  .debug_aranges
                 0x000000c8       0xa8 ..\obj\stm32f10x_gpio.o
  .debug_aranges
-                0x00000170       0x38 ..\obj\rms.o
+                0x00000170       0x48 ..\obj\rms.o
  .debug_aranges
-                0x000001a8       0x88 ..\obj\main.o
+                0x000001b8       0x88 ..\obj\main.o
  .debug_aranges
-                0x00000230       0x78 ..\obj\timers.o
+                0x00000240       0x78 ..\obj\timers.o
  .debug_aranges
-                0x000002a8      0x118 ..\obj\stm32f10x_rcc.o
+                0x000002b8      0x118 ..\obj\stm32f10x_rcc.o
  .debug_aranges
-                0x000003c0       0x58 ..\obj\gpio.o
+                0x000003d0       0x58 ..\obj\gpio.o
  .debug_aranges
-                0x00000418       0x50 ..\obj\stm32f10x_exti.o
+                0x00000428       0x50 ..\obj\stm32f10x_exti.o
  .debug_aranges
-                0x00000468      0x100 ..\obj\tasks.o
+                0x00000478      0x100 ..\obj\tasks.o
  .debug_aranges
-                0x00000568      0x138 ..\obj\stm32f10x_adc.o
+                0x00000578      0x138 ..\obj\stm32f10x_adc.o
  .debug_aranges
-                0x000006a0      0x100 ..\obj\stm32f10x_usart.o
+                0x000006b0      0x100 ..\obj\stm32f10x_usart.o
  .debug_aranges
-                0x000007a0       0x40 ..\obj\list.o
+                0x000007b0       0x40 ..\obj\list.o
  .debug_aranges
-                0x000007e0       0x78 ..\obj\exti.o
+                0x000007f0       0x78 ..\obj\exti.o
  .debug_aranges
-                0x00000858       0x50 ..\obj\adc.o
+                0x00000868       0x50 ..\obj\adc.o
  .debug_aranges
-                0x000008a8       0x90 ..\obj\queue.o
+                0x000008b8       0x90 ..\obj\queue.o
  .debug_aranges
-                0x00000938       0x70 ..\obj\port.o
+                0x00000948       0x70 ..\obj\port.o
  .debug_aranges
-                0x000009a8       0x38 ..\obj\heap_1.o
+                0x000009b8       0x38 ..\obj\heap_1.o
  .debug_aranges
-                0x000009e0       0x88 ..\obj\usart.o
+                0x000009f0       0x88 ..\obj\usart.o
 
-.debug_ranges   0x00000000     0x1690
+.debug_ranges   0x00000000     0x16e8
  .debug_ranges  0x00000000      0x158 ..\obj\w26.o
  .debug_ranges  0x00000158       0x60 ..\obj\system_stm32f10x.o
  .debug_ranges  0x000001b8       0x18 ..\obj\startup_stm32f10x_md.o
  .debug_ranges  0x000001d0       0x98 ..\obj\stm32f10x_gpio.o
- .debug_ranges  0x00000268       0x48 ..\obj\rms.o
- .debug_ranges  0x000002b0       0x90 ..\obj\main.o
- .debug_ranges  0x00000340      0x240 ..\obj\timers.o
- .debug_ranges  0x00000580      0x128 ..\obj\stm32f10x_rcc.o
- .debug_ranges  0x000006a8      0x128 ..\obj\gpio.o
- .debug_ranges  0x000007d0       0x40 ..\obj\stm32f10x_exti.o
- .debug_ranges  0x00000810      0x398 ..\obj\tasks.o
- .debug_ranges  0x00000ba8      0x128 ..\obj\stm32f10x_adc.o
- .debug_ranges  0x00000cd0       0xf0 ..\obj\stm32f10x_usart.o
- .debug_ranges  0x00000dc0       0x30 ..\obj\list.o
- .debug_ranges  0x00000df0      0x1b8 ..\obj\exti.o
- .debug_ranges  0x00000fa8       0xc8 ..\obj\adc.o
- .debug_ranges  0x00001070      0x368 ..\obj\queue.o
- .debug_ranges  0x000013d8       0x78 ..\obj\port.o
- .debug_ranges  0x00001450       0x28 ..\obj\heap_1.o
- .debug_ranges  0x00001478      0x218 ..\obj\usart.o
+ .debug_ranges  0x00000268       0xa0 ..\obj\rms.o
+ .debug_ranges  0x00000308       0x90 ..\obj\main.o
+ .debug_ranges  0x00000398      0x240 ..\obj\timers.o
+ .debug_ranges  0x000005d8      0x128 ..\obj\stm32f10x_rcc.o
+ .debug_ranges  0x00000700      0x128 ..\obj\gpio.o
+ .debug_ranges  0x00000828       0x40 ..\obj\stm32f10x_exti.o
+ .debug_ranges  0x00000868      0x398 ..\obj\tasks.o
+ .debug_ranges  0x00000c00      0x128 ..\obj\stm32f10x_adc.o
+ .debug_ranges  0x00000d28       0xf0 ..\obj\stm32f10x_usart.o
+ .debug_ranges  0x00000e18       0x30 ..\obj\list.o
+ .debug_ranges  0x00000e48      0x1b8 ..\obj\exti.o
+ .debug_ranges  0x00001000       0xc8 ..\obj\adc.o
+ .debug_ranges  0x000010c8      0x368 ..\obj\queue.o
+ .debug_ranges  0x00001430       0x78 ..\obj\port.o
+ .debug_ranges  0x000014a8       0x28 ..\obj\heap_1.o
+ .debug_ranges  0x000014d0      0x218 ..\obj\usart.o
 
-.debug_line     0x00000000     0xa8e9
+.debug_line     0x00000000     0xa9c9
  .debug_line    0x00000000      0x871 ..\obj\w26.o
  .debug_line    0x00000871      0x376 ..\obj\system_stm32f10x.o
  .debug_line    0x00000be7       0xc9 ..\obj\startup_stm32f10x_md.o
  .debug_line    0x00000cb0      0xf4f ..\obj\stm32f10x_gpio.o
- .debug_line    0x00001bff      0x3be ..\obj\rms.o
- .debug_line    0x00001fbd      0x951 ..\obj\main.o
- .debug_line    0x0000290e      0x9eb ..\obj\timers.o
- .debug_line    0x000032f9      0x946 ..\obj\stm32f10x_rcc.o
- .debug_line    0x00003c3f      0x4a9 ..\obj\gpio.o
- .debug_line    0x000040e8      0x341 ..\obj\stm32f10x_exti.o
- .debug_line    0x00004429     0x1844 ..\obj\tasks.o
- .debug_line    0x00005c6d      0xa78 ..\obj\stm32f10x_adc.o
- .debug_line    0x000066e5      0x8ba ..\obj\stm32f10x_usart.o
- .debug_line    0x00006f9f      0x356 ..\obj\list.o
- .debug_line    0x000072f5      0xb01 ..\obj\exti.o
- .debug_line    0x00007df6      0x694 ..\obj\adc.o
- .debug_line    0x0000848a     0x14a2 ..\obj\queue.o
- .debug_line    0x0000992c      0x3b8 ..\obj\port.o
- .debug_line    0x00009ce4      0x2b5 ..\obj\heap_1.o
- .debug_line    0x00009f99      0x950 ..\obj\usart.o
+ .debug_line    0x00001bff      0x49e ..\obj\rms.o
+ .debug_line    0x0000209d      0x951 ..\obj\main.o
+ .debug_line    0x000029ee      0x9eb ..\obj\timers.o
+ .debug_line    0x000033d9      0x946 ..\obj\stm32f10x_rcc.o
+ .debug_line    0x00003d1f      0x4a9 ..\obj\gpio.o
+ .debug_line    0x000041c8      0x341 ..\obj\stm32f10x_exti.o
+ .debug_line    0x00004509     0x1844 ..\obj\tasks.o
+ .debug_line    0x00005d4d      0xa78 ..\obj\stm32f10x_adc.o
+ .debug_line    0x000067c5      0x8ba ..\obj\stm32f10x_usart.o
+ .debug_line    0x0000707f      0x356 ..\obj\list.o
+ .debug_line    0x000073d5      0xb01 ..\obj\exti.o
+ .debug_line    0x00007ed6      0x694 ..\obj\adc.o
+ .debug_line    0x0000856a     0x14a2 ..\obj\queue.o
+ .debug_line    0x00009a0c      0x3b8 ..\obj\port.o
+ .debug_line    0x00009dc4      0x2b5 ..\obj\heap_1.o
+ .debug_line    0x0000a079      0x950 ..\obj\usart.o
 
-.debug_str      0x00000000     0x3a6e
+.debug_str      0x00000000     0x3a81
  .debug_str     0x00000000      0x567 ..\obj\w26.o
                                 0x5d7 (size before relaxing)
  .debug_str     0x00000567      0x16b ..\obj\system_stm32f10x.o
@@ -1695,37 +1699,37 @@ LOAD linker stubs
                                 0x181 (size before relaxing)
  .debug_str     0x00000787      0x3bb ..\obj\stm32f10x_gpio.o
                                 0x51e (size before relaxing)
- .debug_str     0x00000b42      0x13c ..\obj\rms.o
-                                0x356 (size before relaxing)
- .debug_str     0x00000c7e      0x345 ..\obj\main.o
+ .debug_str     0x00000b42      0x14f ..\obj\rms.o
+                                0x331 (size before relaxing)
+ .debug_str     0x00000c91      0x345 ..\obj\main.o
                                 0x732 (size before relaxing)
- .debug_str     0x00000fc3      0x5bc ..\obj\timers.o
+ .debug_str     0x00000fd6      0x5bc ..\obj\timers.o
                                 0x806 (size before relaxing)
- .debug_str     0x0000157f      0x37b ..\obj\stm32f10x_rcc.o
+ .debug_str     0x00001592      0x37b ..\obj\stm32f10x_rcc.o
                                 0x608 (size before relaxing)
- .debug_str     0x000018fa      0x11a ..\obj\gpio.o
+ .debug_str     0x0000190d      0x11a ..\obj\gpio.o
                                 0x529 (size before relaxing)
- .debug_str     0x00001a14      0x1c1 ..\obj\stm32f10x_exti.o
+ .debug_str     0x00001a27      0x1c1 ..\obj\stm32f10x_exti.o
                                 0x337 (size before relaxing)
- .debug_str     0x00001bd5      0x829 ..\obj\tasks.o
+ .debug_str     0x00001be8      0x829 ..\obj\tasks.o
                                 0xbc3 (size before relaxing)
- .debug_str     0x000023fe      0x51b ..\obj\stm32f10x_adc.o
+ .debug_str     0x00002411      0x51b ..\obj\stm32f10x_adc.o
                                 0x700 (size before relaxing)
- .debug_str     0x00002919      0x453 ..\obj\stm32f10x_usart.o
+ .debug_str     0x0000292c      0x453 ..\obj\stm32f10x_usart.o
                                 0x6be (size before relaxing)
- .debug_str     0x00002d6c       0x6c ..\obj\list.o
+ .debug_str     0x00002d7f       0x6c ..\obj\list.o
                                 0x2a7 (size before relaxing)
- .debug_str     0x00002dd8      0x47c ..\obj\exti.o
+ .debug_str     0x00002deb      0x47c ..\obj\exti.o
                                 0xa81 (size before relaxing)
- .debug_str     0x00003254      0x264 ..\obj\adc.o
+ .debug_str     0x00003267      0x264 ..\obj\adc.o
                                 0xb17 (size before relaxing)
- .debug_str     0x000034b8      0x2d7 ..\obj\queue.o
+ .debug_str     0x000034cb      0x2d7 ..\obj\queue.o
                                 0x790 (size before relaxing)
- .debug_str     0x0000378f       0xbd ..\obj\port.o
+ .debug_str     0x000037a2       0xbd ..\obj\port.o
                                 0x30a (size before relaxing)
- .debug_str     0x0000384c       0x92 ..\obj\heap_1.o
+ .debug_str     0x0000385f       0x92 ..\obj\heap_1.o
                                 0x22e (size before relaxing)
- .debug_str     0x000038de      0x190 ..\obj\usart.o
+ .debug_str     0x000038f1      0x190 ..\obj\usart.o
                                 0xa42 (size before relaxing)
 
 .comment        0x00000000       0x49
@@ -1804,28 +1808,28 @@ LOAD linker stubs
  .ARM.attributes
                 0x00000426       0x2d c:/program files (x86)/gnu arm embedded toolchain/10 2021.07/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg.a(lib_a-utoa.o)
 
-.debug_frame    0x00000000     0x1aa4
+.debug_frame    0x00000000     0x1ae4
  .debug_frame   0x00000000      0x14c ..\obj\w26.o
  .debug_frame   0x0000014c       0x44 ..\obj\system_stm32f10x.o
  .debug_frame   0x00000190       0x3c ..\obj\startup_stm32f10x_md.o
  .debug_frame   0x000001cc      0x18c ..\obj\stm32f10x_gpio.o
- .debug_frame   0x00000358       0x88 ..\obj\rms.o
- .debug_frame   0x000003e0      0x150 ..\obj\main.o
- .debug_frame   0x00000530      0x180 ..\obj\timers.o
- .debug_frame   0x000006b0      0x224 ..\obj\stm32f10x_rcc.o
- .debug_frame   0x000008d4       0xc8 ..\obj\gpio.o
- .debug_frame   0x0000099c       0xa4 ..\obj\stm32f10x_exti.o
- .debug_frame   0x00000a40      0x354 ..\obj\tasks.o
- .debug_frame   0x00000d94      0x2a0 ..\obj\stm32f10x_adc.o
- .debug_frame   0x00001034      0x224 ..\obj\stm32f10x_usart.o
- .debug_frame   0x00001258       0x88 ..\obj\list.o
- .debug_frame   0x000012e0      0x18c ..\obj\exti.o
- .debug_frame   0x0000146c       0xe4 ..\obj\adc.o
- .debug_frame   0x00001550      0x1dc ..\obj\queue.o
- .debug_frame   0x0000172c       0xdc ..\obj\port.o
- .debug_frame   0x00001808       0x5c ..\obj\heap_1.o
- .debug_frame   0x00001864      0x168 ..\obj\usart.o
- .debug_frame   0x000019cc       0x40 c:/program files (x86)/gnu arm embedded toolchain/10 2021.07/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg.a(lib_a-itoa.o)
- .debug_frame   0x00001a0c       0x2c c:/program files (x86)/gnu arm embedded toolchain/10 2021.07/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg.a(lib_a-memset.o)
- .debug_frame   0x00001a38       0x20 c:/program files (x86)/gnu arm embedded toolchain/10 2021.07/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg.a(lib_a-strlen-stub.o)
- .debug_frame   0x00001a58       0x4c c:/program files (x86)/gnu arm embedded toolchain/10 2021.07/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg.a(lib_a-utoa.o)
+ .debug_frame   0x00000358       0xc8 ..\obj\rms.o
+ .debug_frame   0x00000420      0x150 ..\obj\main.o
+ .debug_frame   0x00000570      0x180 ..\obj\timers.o
+ .debug_frame   0x000006f0      0x224 ..\obj\stm32f10x_rcc.o
+ .debug_frame   0x00000914       0xc8 ..\obj\gpio.o
+ .debug_frame   0x000009dc       0xa4 ..\obj\stm32f10x_exti.o
+ .debug_frame   0x00000a80      0x354 ..\obj\tasks.o
+ .debug_frame   0x00000dd4      0x2a0 ..\obj\stm32f10x_adc.o
+ .debug_frame   0x00001074      0x224 ..\obj\stm32f10x_usart.o
+ .debug_frame   0x00001298       0x88 ..\obj\list.o
+ .debug_frame   0x00001320      0x18c ..\obj\exti.o
+ .debug_frame   0x000014ac       0xe4 ..\obj\adc.o
+ .debug_frame   0x00001590      0x1dc ..\obj\queue.o
+ .debug_frame   0x0000176c       0xdc ..\obj\port.o
+ .debug_frame   0x00001848       0x5c ..\obj\heap_1.o
+ .debug_frame   0x000018a4      0x168 ..\obj\usart.o
+ .debug_frame   0x00001a0c       0x40 c:/program files (x86)/gnu arm embedded toolchain/10 2021.07/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg.a(lib_a-itoa.o)
+ .debug_frame   0x00001a4c       0x2c c:/program files (x86)/gnu arm embedded toolchain/10 2021.07/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg.a(lib_a-memset.o)
+ .debug_frame   0x00001a78       0x20 c:/program files (x86)/gnu arm embedded toolchain/10 2021.07/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg.a(lib_a-strlen-stub.o)
+ .debug_frame   0x00001a98       0x4c c:/program files (x86)/gnu arm embedded toolchain/10 2021.07/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg.a(lib_a-utoa.o)

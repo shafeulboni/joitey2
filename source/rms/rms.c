@@ -42,57 +42,86 @@ void Sendforaccess(uint32_t cardnumber)
 
 }
 
+void Disp_integer(int data)
+{
+	char buf[10] = {0,};
+	itoa(data,buf,10);
+	//UsartSendString(wifi_man.port, "a", 1);
+	UsartSendString(wifi_man.port, buf, strlen(buf));
+	//UsartSendString(wifi_man.port, "k\n", 2);
+}
+
+void Stringcheck(char *param)
+{
+
+	if(strcmp(param, "Success>")==0)
+	{
+		UsartSendString(wifi_man.port, "Alhamdullillah\n", 15);
+	}
+	else
+	{
+		UsartSendString(wifi_man.port, "Try Next time\n", 14);
+	}
+}
+
+
 void WifiTask(void *param)
 {
-    uint8_t counter = 0;
+    //uint8_t counter = 0;
     bool frame_start = false;
-    uint8_t frame_length = 0;
+   // uint8_t frame_length = 0;
     char arr[30];
+    bool message=false;
 
     UsartSendString(wifi_man.port, "Wifi Manager Checking\n", 22);
     while (1)
     {
-        vTaskDelay(10);
-        //UsartSendString(wifi_man.port, "Wifi Manager Checking\n", 22);
+    	//frame_start = false;
+    	vTaskDelay(5);
+    	if (message == true)
+			{
+
+			wifi_man.callback(arr);
+			//UsartSendString(wifi_man.port, "Message ok\n", 11);
+    		UsartSendString(wifi_man.port, arr, wifi_man.index);
+    		Stringcheck(arr);
+			frame_start = false;
+			//if(wifi_man.reply[])
+			memset(arr, 0, 30);
+			//vTaskDelay(1000);
+			message=false;
+			wifi_man.index=0;
+			}
     	uint8_t data_receive;
-    	if (xSemaphoreTake(wifi_man.wifi_sem, 1000) == pdTRUE)
-    	        {
-
-    	        wifi_man.callback(wifi_man.reply);
-    	        UsartSendString(wifi_man.port, wifi_man.reply, 30);
-    	        //frame_start = false;
-    	        //if(wifi_man.reply[])
-    	        memset(wifi_man.reply, 0, 32);
-    	        //vTaskDelay(1000);
-    	        }
         if (UsartReceiveByte(wifi_man.port, &data_receive) == 1)
-        {
+      	   {
+        	//UsartSendString(wifi_man.port, data_receive,1 );
+        	//Disp_integer(data_receive);
+        	//UsartSendByte(wifi_man.port,data_receive);
 
-        	//DebugPrintf(rms_man.dbg, "%02X\n", data_receive);
-        	UsartSendString(wifi_man.port, (char*)data_receive , 1);
+        	if (data_receive == 0X3C && frame_start != true)
+        	            {
+        					UsartSendString(wifi_man.port, "Frame started.\n",15);
+        	                frame_start = true;
+        	                wifi_man.index=0;
+        	            }
+        	else if(frame_start==true)
+        	{
+        		arr[wifi_man.index]=data_receive;
+        		wifi_man.index++;
+        		//UsartSendByte(wifi_man.port,data_receive);
+        		if((wifi_man.index >= 30)||(data_receive== 0X3E))
+					{
+					frame_start = false;
+					//xSemaphoreGive(wifi_man.wifi_sem);
+					//UsartSendString(wifi_man.port, "Frame End.\n",15);
+					//Disp_integer(wifi_man.index);
+					//UsartSendString(wifi_man.port, " ",1);
+        			message=true;
+					}
+        	}
+      	   }
 
-            //if (data_receive == '<' && frame_start != true)
-        	if (data_receive == '<')
-            {
-              //  DebugInfo(rms_man.dbg, "Frame started.\n");
-            	//UsartSendString(wifi_man.port, "Frame Started\n", 22);
-            	UsartSendString(wifi_man.port, "Frame\n", 6);
-                frame_start = true;
-                wifi_man.index = 0;
-            }
-            else if(frame_start==true)
-            {
-
-            	wifi_man.reply[wifi_man.index] = data_receive;
-            	wifi_man.index++;
-            	if((wifi_man.index >= 30)||(data_receive== '>'))
-            	{
-            	frame_start = false;
-            	xSemaphoreGive(wifi_man.wifi_sem);
-            	}
-            }
-
-        }
     }
 }
 

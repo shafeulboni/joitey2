@@ -22,8 +22,23 @@
       </source>
       <source file="..\..\..\FreeRTOS\include\mpu_wrappers.h" lastModified="1816bcbcf80">
       </source>
-      <source file="..\..\..\source\rms\wifi.h" lastModified="181ae2ba868">
+      <source file="..\..\..\source\rms\rms.c" lastModified="181b47f0de0">
+         <include file="..\..\..\cmsis_boot\stm32f10x.h"/>
+         <include file="..\..\..\stm_lib\inc\stm32f10x_rcc.h"/>
+         <include file="..\..\..\stm_lib\inc\stm32f10x_gpio.h"/>
+         <include file="..\..\..\cmsis_boot\stm32f10x_exti.h"/>
+         <include file="..\..\..\stm_lib\inc\stm32f10x_tim.h"/>
+         <include file="..\..\..\source\gpio\gpio.h"/>
+         <include file="..\..\..\FreeRTOS\include\FreeRTOS.h"/>
+         <include file="..\..\..\FreeRTOS\include\task.h"/>
+         <include file="..\..\..\FreeRTOS\include\queue.h"/>
+         <include file="..\..\..\FreeRTOS\include\semphr.h"/>
+         <include file="..\..\..\source\led\led.h"/>
+         <include file="..\..\..\FreeRTOS\include\timers.h"/>
+         <include file="..\..\..\source\gpio\gpio.h"/>
+         <include file="..\..\..\source\adc\adc.h"/>
          <include file="..\..\..\source\usart\usart.h"/>
+         <include file="..\..\..\source\rms\wifi.h"/>
       </source>
       <source file="..\..\..\cmsis_boot\system_stm32f10x.h" lastModified="1816bcbcf80">
       </source>
@@ -254,7 +269,7 @@
       </source>
       <source file="..\..\..\source\gpio\gpio.h" lastModified="1816bcbcf80">
       </source>
-      <source file="..\..\..\main.c" lastModified="181ae648669">
+      <source file="..\..\..\main.c" lastModified="181b47cdf20">
          <include file="..\..\..\cmsis_boot\stm32f10x.h"/>
          <include file="..\..\..\stm_lib\inc\stm32f10x_gpio.h"/>
          <include file="..\..\..\stm_lib\inc\stm32f10x_rcc.h"/>
