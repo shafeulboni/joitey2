@@ -441,6 +441,33 @@ Discarded input sections
  .debug_frame   0x00000000       0x70 ..\obj\stm32f10x_crc.o
  .ARM.attributes
                 0x00000000       0x2d ..\obj\stm32f10x_crc.o
+ .text          0x00000000        0x0 ..\obj\sensor.o
+ .data          0x00000000        0x0 ..\obj\sensor.o
+ .bss           0x00000000       0x20 ..\obj\sensor.o
+ .text.ExtiHandlerIR
+                0x00000000        0x4 ..\obj\sensor.o
+ .text.SensorTask
+                0x00000000       0x94 ..\obj\sensor.o
+ .text.SensorTimerHandler
+                0x00000000       0x14 ..\obj\sensor.o
+ .rodata.str1.4
+                0x00000000        0x5 ..\obj\sensor.o
+ .text.SensorInit
+                0x00000000       0x24 ..\obj\sensor.o
+ .text.SensorCreate
+                0x00000000       0x4c ..\obj\sensor.o
+ .debug_info    0x00000000      0x6c6 ..\obj\sensor.o
+ .debug_abbrev  0x00000000      0x208 ..\obj\sensor.o
+ .debug_loc     0x00000000      0x17c ..\obj\sensor.o
+ .debug_aranges
+                0x00000000       0x40 ..\obj\sensor.o
+ .debug_ranges  0x00000000       0x88 ..\obj\sensor.o
+ .debug_line    0x00000000      0x470 ..\obj\sensor.o
+ .debug_str     0x00000000      0x60a ..\obj\sensor.o
+ .comment       0x00000000       0x4a ..\obj\sensor.o
+ .debug_frame   0x00000000       0x98 ..\obj\sensor.o
+ .ARM.attributes
+                0x00000000       0x2d ..\obj\sensor.o
  .text          0x00000000        0x0 ..\obj\stm32f10x_rcc.o
  .bss           0x00000000        0x0 ..\obj\stm32f10x_rcc.o
  .text.RCC_DeInit
@@ -689,6 +716,10 @@ Discarded input sections
                 0x00000000       0x34 ..\obj\adc.o
  .text.AdcHchannel
                 0x00000000       0x10 ..\obj\adc.o
+ .text          0x00000000        0x0 ..\obj\port.o
+ .bss           0x00000000        0x0 ..\obj\port.o
+ .text.vPortEndScheduler
+                0x00000000        0x4 ..\obj\port.o
  .text          0x00000000        0x0 ..\obj\queue.o
  .data          0x00000000        0x0 ..\obj\queue.o
  .bss           0x00000000        0x0 ..\obj\queue.o
@@ -710,10 +741,6 @@ Discarded input sections
                 0x00000000        0xc ..\obj\queue.o
  .text.xQueueIsQueueFullFromISR
                 0x00000000       0x10 ..\obj\queue.o
- .text          0x00000000        0x0 ..\obj\port.o
- .bss           0x00000000        0x0 ..\obj\port.o
- .text.vPortEndScheduler
-                0x00000000        0x4 ..\obj\port.o
  .text          0x00000000        0x0 ..\obj\debug.o
  .data          0x00000000        0x0 ..\obj\debug.o
  .bss           0x00000000      0x294 ..\obj\debug.o
@@ -843,6 +870,41 @@ Discarded input sections
  .debug_frame   0x00000000      0x138 ..\obj\event_groups.o
  .ARM.attributes
                 0x00000000       0x2d ..\obj\event_groups.o
+ .text          0x00000000        0x0 ..\obj\lock.o
+ .data          0x00000000        0x0 ..\obj\lock.o
+ .bss           0x00000000        0xc ..\obj\lock.o
+ .text.LockTaskHandler
+                0x00000000       0x94 ..\obj\lock.o
+ .text.LockCreate
+                0x00000000       0x8c ..\obj\lock.o
+ .text.SliderEnablePositive
+                0x00000000       0x28 ..\obj\lock.o
+ .text.SliderEnableNegative
+                0x00000000       0x28 ..\obj\lock.o
+ .text.SliderDisable
+                0x00000000       0x28 ..\obj\lock.o
+ .text.Motor_1_Enable
+                0x00000000       0x28 ..\obj\lock.o
+ .text.Motor_2_Enable
+                0x00000000       0x28 ..\obj\lock.o
+ .text.MotorDisable
+                0x00000000       0x28 ..\obj\lock.o
+ .rodata.str1.4
+                0x00000000        0x5 ..\obj\lock.o
+ .text.LockInit
+                0x00000000       0x38 ..\obj\lock.o
+ .debug_info    0x00000000      0x730 ..\obj\lock.o
+ .debug_abbrev  0x00000000      0x1b4 ..\obj\lock.o
+ .debug_loc     0x00000000      0x2ae ..\obj\lock.o
+ .debug_aranges
+                0x00000000       0x60 ..\obj\lock.o
+ .debug_ranges  0x00000000       0x80 ..\obj\lock.o
+ .debug_line    0x00000000      0x436 ..\obj\lock.o
+ .debug_str     0x00000000      0x3cc ..\obj\lock.o
+ .comment       0x00000000       0x4a ..\obj\lock.o
+ .debug_frame   0x00000000      0x128 ..\obj\lock.o
+ .ARM.attributes
+                0x00000000       0x2d ..\obj\lock.o
  .text          0x00000000        0x0 ..\obj\heap_1.o
  .data          0x00000000        0x0 ..\obj\heap_1.o
  .text.vPortInitialiseBlocks
@@ -981,7 +1043,7 @@ Linker script and memory map
 
                 0x20005000                _eram = 0x20005000
 
-.text           0x08000000     0x3511
+.text           0x08000000     0x3515
  *(.isr_vector)
  .isr_vector    0x08000000      0x10c ..\obj\startup_stm32f10x_md.o
                 0x08000000                g_pfnVectors
@@ -1270,91 +1332,91 @@ Linker script and memory map
  .text.ADC1_2_IRQHandler
                 0x080022cc       0x84 ..\obj\adc.o
                 0x080022cc                ADC1_2_IRQHandler
- .text.xQueueGenericCreate
-                0x08002350       0x74 ..\obj\queue.o
-                0x08002350                xQueueGenericCreate
- .text.xQueueGenericSend
-                0x080023c4      0x318 ..\obj\queue.o
-                0x080023c4                xQueueGenericSend
- .text.xQueueGenericSendFromISR
-                0x080026dc       0xfc ..\obj\queue.o
-                0x080026dc                xQueueGenericSendFromISR
- .text.xQueueGiveFromISR
-                0x080027d8       0x78 ..\obj\queue.o
-                0x080027d8                xQueueGiveFromISR
- .text.xQueueGenericReceive
-                0x08002850      0x2bc ..\obj\queue.o
-                0x08002850                xQueueGenericReceive
- .text.vQueueWaitForMessageRestricted
-                0x08002b0c       0xc8 ..\obj\queue.o
-                0x08002b0c                vQueueWaitForMessageRestricted
  .text.prvTaskExitError
-                0x08002bd4       0x14 ..\obj\port.o
+                0x08002350       0x14 ..\obj\port.o
  .text.prvPortStartFirstTask
-                0x08002be8       0x20 ..\obj\port.o
+                0x08002364       0x20 ..\obj\port.o
  .text.pxPortInitialiseStack
-                0x08002c08       0x24 ..\obj\port.o
-                0x08002c08                pxPortInitialiseStack
- *fill*         0x08002c2c        0x4 
+                0x08002384       0x24 ..\obj\port.o
+                0x08002384                pxPortInitialiseStack
+ *fill*         0x080023a8        0x8 
  .text.SVC_Handler
-                0x08002c30       0x28 ..\obj\port.o
-                0x08002c30                SVC_Handler
+                0x080023b0       0x28 ..\obj\port.o
+                0x080023b0                SVC_Handler
  .text.vPortEnterCritical
-                0x08002c58       0x20 ..\obj\port.o
-                0x08002c58                vPortEnterCritical
+                0x080023d8       0x20 ..\obj\port.o
+                0x080023d8                vPortEnterCritical
  .text.vPortExitCritical
-                0x08002c78       0x14 ..\obj\port.o
-                0x08002c78                vPortExitCritical
- *fill*         0x08002c8c        0x4 
+                0x080023f8       0x14 ..\obj\port.o
+                0x080023f8                vPortExitCritical
+ *fill*         0x0800240c        0x4 
  .text.PendSV_Handler
-                0x08002c90       0x48 ..\obj\port.o
-                0x08002c90                PendSV_Handler
+                0x08002410       0x48 ..\obj\port.o
+                0x08002410                PendSV_Handler
  .text.SysTick_Handler
-                0x08002cd8       0x2c ..\obj\port.o
-                0x08002cd8                SysTick_Handler
+                0x08002458       0x2c ..\obj\port.o
+                0x08002458                SysTick_Handler
  .text.vPortSetupTimerInterrupt
-                0x08002d04       0x14 ..\obj\port.o
-                0x08002d04                vPortSetupTimerInterrupt
+                0x08002484       0x14 ..\obj\port.o
+                0x08002484                vPortSetupTimerInterrupt
  .text.xPortStartScheduler
-                0x08002d18       0x34 ..\obj\port.o
-                0x08002d18                xPortStartScheduler
+                0x08002498       0x34 ..\obj\port.o
+                0x08002498                xPortStartScheduler
+ .text.xQueueGenericCreate
+                0x080024cc       0x74 ..\obj\queue.o
+                0x080024cc                xQueueGenericCreate
+ .text.xQueueGenericSend
+                0x08002540      0x318 ..\obj\queue.o
+                0x08002540                xQueueGenericSend
+ .text.xQueueGenericSendFromISR
+                0x08002858       0xfc ..\obj\queue.o
+                0x08002858                xQueueGenericSendFromISR
+ .text.xQueueGiveFromISR
+                0x08002954       0x78 ..\obj\queue.o
+                0x08002954                xQueueGiveFromISR
+ .text.xQueueGenericReceive
+                0x080029cc      0x2bc ..\obj\queue.o
+                0x080029cc                xQueueGenericReceive
+ .text.vQueueWaitForMessageRestricted
+                0x08002c88       0xc8 ..\obj\queue.o
+                0x08002c88                vQueueWaitForMessageRestricted
  .text.pvPortMalloc
-                0x08002d4c       0x50 ..\obj\heap_1.o
-                0x08002d4c                pvPortMalloc
+                0x08002d50       0x50 ..\obj\heap_1.o
+                0x08002d50                pvPortMalloc
  .text.vPortFree
-                0x08002d9c        0x4 ..\obj\heap_1.o
-                0x08002d9c                vPortFree
+                0x08002da0        0x4 ..\obj\heap_1.o
+                0x08002da0                vPortFree
  .text.ConfigUsartGpio
-                0x08002da0       0xb8 ..\obj\usart.o
-                0x08002da0                ConfigUsartGpio
+                0x08002da4       0xb8 ..\obj\usart.o
+                0x08002da4                ConfigUsartGpio
  .text.InitUsart
-                0x08002e58      0x12c ..\obj\usart.o
-                0x08002e58                InitUsart
+                0x08002e5c      0x12c ..\obj\usart.o
+                0x08002e5c                InitUsart
  .text.Disp_integer
-                0x08002f84       0x74 ..\obj\usart.o
-                0x08002f84                Disp_integer
+                0x08002f88       0x74 ..\obj\usart.o
+                0x08002f88                Disp_integer
  .text.UsartSendString
-                0x08002ff8       0x58 ..\obj\usart.o
-                0x08002ff8                UsartSendString
+                0x08002ffc       0x58 ..\obj\usart.o
+                0x08002ffc                UsartSendString
  .text.UsartReceiveByte
-                0x08003050       0x18 ..\obj\usart.o
-                0x08003050                UsartReceiveByte
+                0x08003054       0x18 ..\obj\usart.o
+                0x08003054                UsartReceiveByte
  .text.USART1_IRQHandler
-                0x08003068       0x64 ..\obj\usart.o
-                0x08003068                USART1_IRQHandler
+                0x0800306c       0x64 ..\obj\usart.o
+                0x0800306c                USART1_IRQHandler
  .text.USART2_IRQHandler
-                0x080030cc       0x64 ..\obj\usart.o
-                0x080030cc                USART2_IRQHandler
- .text.itoa     0x08003130       0x30 c:/program files (x86)/gnu arm embedded toolchain/10 2021.07/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg.a(lib_a-itoa.o)
-                0x08003130                itoa
- .text          0x08003160       0xec c:/program files (x86)/gnu arm embedded toolchain/10 2021.07/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg.a(lib_a-memcpy.o)
-                0x08003160                memcpy
- .text.memset   0x0800324c       0xa4 c:/program files (x86)/gnu arm embedded toolchain/10 2021.07/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg.a(lib_a-memset.o)
-                0x0800324c                memset
- .text.strlen   0x080032f0       0x5c c:/program files (x86)/gnu arm embedded toolchain/10 2021.07/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg.a(lib_a-strlen-stub.o)
-                0x080032f0                strlen
- .text.__utoa   0x0800334c       0x9c c:/program files (x86)/gnu arm embedded toolchain/10 2021.07/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg.a(lib_a-utoa.o)
-                0x0800334c                __utoa
+                0x080030d0       0x64 ..\obj\usart.o
+                0x080030d0                USART2_IRQHandler
+ .text.itoa     0x08003134       0x30 c:/program files (x86)/gnu arm embedded toolchain/10 2021.07/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg.a(lib_a-itoa.o)
+                0x08003134                itoa
+ .text          0x08003164       0xec c:/program files (x86)/gnu arm embedded toolchain/10 2021.07/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg.a(lib_a-memcpy.o)
+                0x08003164                memcpy
+ .text.memset   0x08003250       0xa4 c:/program files (x86)/gnu arm embedded toolchain/10 2021.07/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg.a(lib_a-memset.o)
+                0x08003250                memset
+ .text.strlen   0x080032f4       0x5c c:/program files (x86)/gnu arm embedded toolchain/10 2021.07/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg.a(lib_a-strlen-stub.o)
+                0x080032f4                strlen
+ .text.__utoa   0x08003350       0x9c c:/program files (x86)/gnu arm embedded toolchain/10 2021.07/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg.a(lib_a-utoa.o)
+                0x08003350                __utoa
  *(.init)
  *(.fini)
  *crtbegin.o(.ctors)
@@ -1369,52 +1431,52 @@ Linker script and memory map
  *(.dtors)
  *(.rodata*)
  .rodata.str1.4
-                0x080033e8       0x12 ..\obj\w26.o
- *fill*         0x080033fa        0x2 
+                0x080033ec       0x12 ..\obj\w26.o
+ *fill*         0x080033fe        0x2 
  .rodata.str1.4
-                0x080033fc       0x2b ..\obj\rms.o
+                0x08003400       0x2b ..\obj\rms.o
                                  0x2d (size before relaxing)
- *fill*         0x08003427        0x1 
+ *fill*         0x0800342b        0x1 
  .rodata.str1.4
-                0x08003428       0x50 ..\obj\main.o
+                0x0800342c       0x50 ..\obj\main.o
                                  0x54 (size before relaxing)
  .rodata.str1.4
-                0x08003478        0x8 ..\obj\timers.o
- .rodata        0x08003480       0x3c ..\obj\gpio.o
- .rodata        0x080034bc       0x30 ..\obj\usart.o
+                0x0800347c        0x8 ..\obj\timers.o
+ .rodata        0x08003484       0x3c ..\obj\gpio.o
+ .rodata        0x080034c0       0x30 ..\obj\usart.o
  .rodata.__utoa.str1.4
-                0x080034ec       0x25 c:/program files (x86)/gnu arm embedded toolchain/10 2021.07/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg.a(lib_a-utoa.o)
+                0x080034f0       0x25 c:/program files (x86)/gnu arm embedded toolchain/10 2021.07/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg.a(lib_a-utoa.o)
  *(.eh_fram e*)
 
-.glue_7         0x08003514        0x0
- .glue_7        0x08003514        0x0 linker stubs
+.glue_7         0x08003518        0x0
+ .glue_7        0x08003518        0x0 linker stubs
 
-.glue_7t        0x08003514        0x0
- .glue_7t       0x08003514        0x0 linker stubs
+.glue_7t        0x08003518        0x0
+ .glue_7t       0x08003518        0x0 linker stubs
 
-.vfp11_veneer   0x08003514        0x0
- .vfp11_veneer  0x08003514        0x0 linker stubs
+.vfp11_veneer   0x08003518        0x0
+ .vfp11_veneer  0x08003518        0x0 linker stubs
 
-.v4_bx          0x08003514        0x0
- .v4_bx         0x08003514        0x0 linker stubs
+.v4_bx          0x08003518        0x0
+ .v4_bx         0x08003518        0x0 linker stubs
 
-.iplt           0x08003514        0x0
- .iplt          0x08003514        0x0 ..\obj\w26.o
+.iplt           0x08003518        0x0
+ .iplt          0x08003518        0x0 ..\obj\w26.o
 
-.rel.dyn        0x08003514        0x0
- .rel.iplt      0x08003514        0x0 ..\obj\w26.o
+.rel.dyn        0x08003518        0x0
+ .rel.iplt      0x08003518        0x0 ..\obj\w26.o
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x08003511                __exidx_start = .
+                0x08003515                __exidx_start = .
 
 .ARM.exidx
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x08003511                __exidx_end = .
-                0x08003511                __etext = .
-                0x08003511                _sidata = __etext
+                0x08003515                __exidx_end = .
+                0x08003515                __etext = .
+                0x08003515                _sidata = __etext
 
-.data           0x20000000       0x2c load address 0x08003511
+.data           0x20000000       0x2c load address 0x08003515
                 0x20000000                __data_start__ = .
                 0x20000000                _sdata = __data_start__
  *(vtable)
@@ -1443,10 +1505,10 @@ Linker script and memory map
                 0x2000002c                __data_end__ = .
                 0x2000002c                _edata = __data_end__
 
-.igot.plt       0x2000002c        0x0 load address 0x08003540
+.igot.plt       0x2000002c        0x0 load address 0x08003544
  .igot.plt      0x2000002c        0x0 ..\obj\w26.o
 
-.bss            0x2000002c     0x4394 load address 0x08003540
+.bss            0x2000002c     0x4394 load address 0x08003544
                 0x2000002c                . = ALIGN (0x4)
                 0x2000002c                __bss_start__ = .
                 0x2000002c                _sbss = __bss_start__
@@ -1491,7 +1553,7 @@ Linker script and memory map
  *(.heap*)
                 0x200043c0                __HeapLimit = .
 
-.co_stack       0x200043c0      0x400 load address 0x080078d4
+.co_stack       0x200043c0      0x400 load address 0x080078d8
                 0x200043c0                . = ALIGN (0x8)
  *(.co_stack .co_stack.*)
  .co_stack      0x200043c0      0x400 ..\obj\startup_stm32f10x_md.o
@@ -1513,6 +1575,7 @@ LOAD ..\obj\rms.o
 LOAD ..\obj\main.o
 LOAD ..\obj\timers.o
 LOAD ..\obj\stm32f10x_crc.o
+LOAD ..\obj\sensor.o
 LOAD ..\obj\stm32f10x_rcc.o
 LOAD ..\obj\gpio.o
 LOAD ..\obj\stm32f10x_exti.o
@@ -1522,12 +1585,13 @@ LOAD ..\obj\stm32f10x_usart.o
 LOAD ..\obj\list.o
 LOAD ..\obj\exti.o
 LOAD ..\obj\adc.o
-LOAD ..\obj\queue.o
 LOAD ..\obj\port.o
+LOAD ..\obj\queue.o
 LOAD ..\obj\debug.o
 LOAD ..\obj\stm32f10x_dma.o
 LOAD ..\obj\croutine.o
 LOAD ..\obj\event_groups.o
+LOAD ..\obj\lock.o
 LOAD ..\obj\heap_1.o
 LOAD ..\obj\stm32f10x_bkp.o
 LOAD ..\obj\usart.o
@@ -1557,8 +1621,8 @@ LOAD linker stubs
  .debug_info    0x00009122      0x2cf ..\obj\list.o
  .debug_info    0x000093f1     0x1279 ..\obj\exti.o
  .debug_info    0x0000a66a     0x11b5 ..\obj\adc.o
- .debug_info    0x0000b81f     0x1a34 ..\obj\queue.o
- .debug_info    0x0000d253      0x32f ..\obj\port.o
+ .debug_info    0x0000b81f      0x32f ..\obj\port.o
+ .debug_info    0x0000bb4e     0x1a34 ..\obj\queue.o
  .debug_info    0x0000d582      0x1c9 ..\obj\heap_1.o
  .debug_info    0x0000d74b     0x1718 ..\obj\usart.o
 
@@ -1579,8 +1643,8 @@ LOAD linker stubs
  .debug_abbrev  0x00001f98      0x110 ..\obj\list.o
  .debug_abbrev  0x000020a8      0x357 ..\obj\exti.o
  .debug_abbrev  0x000023ff      0x383 ..\obj\adc.o
- .debug_abbrev  0x00002782      0x2e0 ..\obj\queue.o
- .debug_abbrev  0x00002a62      0x223 ..\obj\port.o
+ .debug_abbrev  0x00002782      0x223 ..\obj\port.o
+ .debug_abbrev  0x000029a5      0x2e0 ..\obj\queue.o
  .debug_abbrev  0x00002c85      0x133 ..\obj\heap_1.o
  .debug_abbrev  0x00002db8      0x47c ..\obj\usart.o
 
@@ -1600,8 +1664,8 @@ LOAD linker stubs
  .debug_loc     0x0000710a       0xa4 ..\obj\list.o
  .debug_loc     0x000071ae      0x94e ..\obj\exti.o
  .debug_loc     0x00007afc      0x47f ..\obj\adc.o
- .debug_loc     0x00007f7b     0x175a ..\obj\queue.o
- .debug_loc     0x000096d5       0xaf ..\obj\port.o
+ .debug_loc     0x00007f7b       0xaf ..\obj\port.o
+ .debug_loc     0x0000802a     0x175a ..\obj\queue.o
  .debug_loc     0x00009784       0xc0 ..\obj\heap_1.o
  .debug_loc     0x00009844      0xe4f ..\obj\usart.o
 
@@ -1639,9 +1703,9 @@ LOAD linker stubs
  .debug_aranges
                 0x00000860       0x50 ..\obj\adc.o
  .debug_aranges
-                0x000008b0       0x90 ..\obj\queue.o
+                0x000008b0       0x70 ..\obj\port.o
  .debug_aranges
-                0x00000940       0x70 ..\obj\port.o
+                0x00000920       0x90 ..\obj\queue.o
  .debug_aranges
                 0x000009b0       0x38 ..\obj\heap_1.o
  .debug_aranges
@@ -1664,8 +1728,8 @@ LOAD linker stubs
  .debug_ranges  0x00000df0       0x30 ..\obj\list.o
  .debug_ranges  0x00000e20      0x1b8 ..\obj\exti.o
  .debug_ranges  0x00000fd8       0xc8 ..\obj\adc.o
- .debug_ranges  0x000010a0      0x368 ..\obj\queue.o
- .debug_ranges  0x00001408       0x78 ..\obj\port.o
+ .debug_ranges  0x000010a0       0x78 ..\obj\port.o
+ .debug_ranges  0x00001118      0x368 ..\obj\queue.o
  .debug_ranges  0x00001480       0x28 ..\obj\heap_1.o
  .debug_ranges  0x000014a8      0x290 ..\obj\usart.o
 
@@ -1686,8 +1750,8 @@ LOAD linker stubs
  .debug_line    0x0000702e      0x356 ..\obj\list.o
  .debug_line    0x00007384      0xb01 ..\obj\exti.o
  .debug_line    0x00007e85      0x694 ..\obj\adc.o
- .debug_line    0x00008519     0x14a2 ..\obj\queue.o
- .debug_line    0x000099bb      0x3b8 ..\obj\port.o
+ .debug_line    0x00008519      0x3b8 ..\obj\port.o
+ .debug_line    0x000088d1     0x14a2 ..\obj\queue.o
  .debug_line    0x00009d73      0x2b5 ..\obj\heap_1.o
  .debug_line    0x0000a028      0xa8d ..\obj\usart.o
 
@@ -1724,10 +1788,10 @@ LOAD linker stubs
                                 0xa81 (size before relaxing)
  .debug_str     0x0000325d      0x264 ..\obj\adc.o
                                 0xb17 (size before relaxing)
- .debug_str     0x000034c1      0x2d7 ..\obj\queue.o
-                                0x790 (size before relaxing)
- .debug_str     0x00003798       0xbd ..\obj\port.o
+ .debug_str     0x000034c1       0xbd ..\obj\port.o
                                 0x30a (size before relaxing)
+ .debug_str     0x0000357e      0x2d7 ..\obj\queue.o
+                                0x790 (size before relaxing)
  .debug_str     0x00003855       0x92 ..\obj\heap_1.o
                                 0x22e (size before relaxing)
  .debug_str     0x000038e7      0x196 ..\obj\usart.o
@@ -1751,8 +1815,8 @@ LOAD linker stubs
  .comment       0x00000049       0x4a ..\obj\list.o
  .comment       0x00000049       0x4a ..\obj\exti.o
  .comment       0x00000049       0x4a ..\obj\adc.o
- .comment       0x00000049       0x4a ..\obj\queue.o
  .comment       0x00000049       0x4a ..\obj\port.o
+ .comment       0x00000049       0x4a ..\obj\queue.o
  .comment       0x00000049       0x4a ..\obj\heap_1.o
  .comment       0x00000049       0x4a ..\obj\usart.o
 
@@ -1791,9 +1855,9 @@ LOAD linker stubs
  .ARM.attributes
                 0x000002a3       0x2d ..\obj\adc.o
  .ARM.attributes
-                0x000002d0       0x2d ..\obj\queue.o
+                0x000002d0       0x2d ..\obj\port.o
  .ARM.attributes
-                0x000002fd       0x2d ..\obj\port.o
+                0x000002fd       0x2d ..\obj\queue.o
  .ARM.attributes
                 0x0000032a       0x2d ..\obj\heap_1.o
  .ARM.attributes
@@ -1826,8 +1890,8 @@ LOAD linker stubs
  .debug_frame   0x00001284       0x88 ..\obj\list.o
  .debug_frame   0x0000130c      0x18c ..\obj\exti.o
  .debug_frame   0x00001498       0xe4 ..\obj\adc.o
- .debug_frame   0x0000157c      0x1dc ..\obj\queue.o
- .debug_frame   0x00001758       0xdc ..\obj\port.o
+ .debug_frame   0x0000157c       0xdc ..\obj\port.o
+ .debug_frame   0x00001658      0x1dc ..\obj\queue.o
  .debug_frame   0x00001834       0x5c ..\obj\heap_1.o
  .debug_frame   0x00001890      0x190 ..\obj\usart.o
  .debug_frame   0x00001a20       0x40 c:/program files (x86)/gnu arm embedded toolchain/10 2021.07/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg.a(lib_a-itoa.o)

@@ -306,6 +306,8 @@ void WifiHandler(char *msg, int status, int length)
 	Disp_integer(port, status);
 	UsartSendString(port, "\n",1);
 }
+
+
 int main(void) {
 
 	SystemCoreClockUpdate();
