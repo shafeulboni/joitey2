@@ -13,7 +13,7 @@
 #include "queue.h"
 //#include "debug.h"
 #include "semphr.h"
-#include "led.h"
+//#include "led.h"
 #include "timers.h"
 #include "exti.h"
 #include "w26.h"
@@ -210,7 +210,7 @@ void W26Init()
 {
     //reader_man.dbg = DebugRegister("W26", W26DebugHandler);
     reader_man.w26_sem = xSemaphoreCreateBinary();
-    xTaskCreate(CardReaderTask, "Card", 512, NULL, 2, NULL);
+    xTaskCreate(CardReaderTask, "Card", 256, NULL, 2, NULL);
 }
 
 void ExtiHandlerD0(BaseType_t *woke_token, void *param)

@@ -5,7 +5,14 @@
 
 #include <stdint.h>
 #include <stdbool.h>
+#include "exti.h"
 #include "adc.h"
+
+typedef void * Sensor;
+typedef void (*SensorCallback )( bool uplimit, bool downlimit, bool dispatch_complete);
+
+
+Sensor SensorCreate(SensorCallback callback, int portup,ExtiId exti_up,int portdown, ExtiId exti_down, int port_ir, ExtiId exti_ir);
 
 //01810150955
 typedef void * Lock;

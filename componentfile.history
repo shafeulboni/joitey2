@@ -2,5 +2,28 @@
 
 <History> 
   <File usedCount="2" path="stm_lib/inc/stm32f10x_exti.h"/>  
-  <File usedCount="2" path="stm_lib/src/stm32f10x_exti.c"/>
+  <File usedCount="2" path="stm_lib/src/stm32f10x_exti.c"/>  
+  <File usedCount="2" path="cox/cox_peripheral/inc/xgpio.h"/>  
+  <File usedCount="2" path="cox/cox_peripheral/inc/xsysctl.h"/>  
+  <File usedCount="2" path="cox/cox_peripheral/inc/xdebug.h"/>  
+  <File usedCount="2" path="cox/cox_peripheral/inc/xcore.h"/>  
+  <File usedCount="2" path="cox/cox_peripheral/src/xcore.c"/>  
+  <File usedCount="2" path="cox/cox_peripheral/inc/xhw_adc.h"/>  
+  <File usedCount="2" path="cox/cox_peripheral/inc/xhw_config.h"/>  
+  <File usedCount="2" path="cox/cox_peripheral/inc/xhw_dma.h"/>  
+  <File usedCount="2" path="cox/cox_peripheral/inc/xhw_gpio.h"/>  
+  <File usedCount="2" path="cox/cox_peripheral/inc/xhw_i2c.h"/>  
+  <File usedCount="2" path="cox/cox_peripheral/inc/xhw_ints.h"/>  
+  <File usedCount="2" path="cox/cox_peripheral/inc/xhw_memmap.h"/>  
+  <File usedCount="2" path="cox/cox_peripheral/inc/xhw_nvic.h"/>  
+  <File usedCount="2" path="cox/cox_peripheral/inc/xhw_rtc.h"/>  
+  <File usedCount="2" path="cox/cox_peripheral/inc/xhw_spi.h"/>  
+  <File usedCount="2" path="cox/cox_peripheral/inc/xhw_sysctl.h"/>  
+  <File usedCount="2" path="cox/cox_peripheral/inc/xhw_timer.h"/>  
+  <File usedCount="2" path="cox/cox_peripheral/inc/xhw_types.h"/>  
+  <File usedCount="2" path="cox/cox_peripheral/inc/xhw_uart.h"/>  
+  <File usedCount="2" path="cox/cox_peripheral/inc/xhw_wdt.h"/>  
+  <File usedCount="2" path="cox/cox_peripheral/src/xdebug.c"/>  
+  <File usedCount="2" path="cox/cox_peripheral/src/xsysctl.c"/>  
+  <File usedCount="2" path="cox/cox_peripheral/src/xgpio.c"/>
 </History>

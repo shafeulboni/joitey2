@@ -13,7 +13,7 @@
 #include "task.h"
 #include "queue.h"
 #include "semphr.h"
-#include "led.h"
+//#include "led.h"
 #include "timers.h"
 #include "gpio.h"
 #include "adc.h"
@@ -24,9 +24,9 @@ typedef struct
 {
     UsartHandle port;
     uint8_t index;
-    char reply[30];
+    char reply[15];
     WifiCallBack callback;
-    xSemaphoreHandle wifi_sem;
+   // xSemaphoreHandle wifi_sem;
 } WifiManager;
 
 WifiManager wifi_man;
@@ -107,7 +107,7 @@ void WifiTask(void *param)
         		arr[wifi_man.index]=data_receive;
         		wifi_man.index++;
         		//UsartSendByte(wifi_man.port,data_receive);
-        		if((wifi_man.index >= 30)||(data_receive== 0X3E))
+        		if((wifi_man.index >= 15)||(data_receive== 0X3E))
 					{
 					frame_start = false;
 					//xSemaphoreGive(wifi_man.wifi_sem);
@@ -132,6 +132,6 @@ void WifiInit(WifiCallBack callback)
     wifi_man.port = InitUsart(COM2, 9600, 0, 48);
     wifi_man.index = 0;
     wifi_man.callback = callback;
-    xTaskCreate(WifiTask, "", 512, NULL, 3, NULL);
-    wifi_man.wifi_sem=xSemaphoreCreateBinary();
+    xTaskCreate(WifiTask, "", 256, NULL, 3, NULL);
+    //wifi_man.wifi_sem=xSemaphoreCreateBinary();
 }

@@ -9,7 +9,7 @@
 #include "debug.h"
 #include "FreeRTOS.h"
 #include "queue.h"
-
+#include <string.h>
 typedef struct
 {
 	ComId port_id;

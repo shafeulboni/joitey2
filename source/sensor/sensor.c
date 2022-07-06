@@ -12,7 +12,7 @@
 #include "queue.h"
 #include "debug.h"
 #include "semphr.h"
-#include "led.h"
+//#include "led.h"
 #include "timers.h"
 #include "exti.h"
 #include "sensor.h"
@@ -39,15 +39,11 @@ typedef struct
     xSemaphoreHandle sensor_sem;
 } SensorManager;
 
-SensorManager sensor_man;
-
 void SensorTask(void *vibtask)
 {
 
     //xTimerStart(sensor_man.sensor.sensor_timer,100);
-
-	sensor_man.sensor.limit_1_sense=false;
-	sensor_man.sensor.limit_1_sense=false;
+/*
 
     while (1)
     {
@@ -126,19 +122,16 @@ void SensorTask(void *vibtask)
         {
         }
     }
+    */
 }
 
 
-void ExtiHandlerIR(BaseType_t *woke_token, void *param)
-{
-
-}
 
 
 void SensorTimerHandler(xTimerHandle timer)
 {
    // DebugPrintf(sensor_man.dbg, "Timer ok\n");
-    xSemaphoreGive(sensor_man.sensor_sem);
+   // xSemaphoreGive(sensor_man.sensor_sem);
 }
 
 
@@ -146,17 +139,8 @@ void SensorInit()
 {
     //sensor_man.dbg = DebugRegister("SENSOR", SensorDebugHandler);
     //reader_man.w26_sem = xSemaphoreCreateBinary();
-    xTaskCreate(SensorTask, "Temp", 512, NULL, 2, NULL);
+    xTaskCreate(SensorTask, "Temp", 256, NULL, 2, NULL);
     //sensor_man.sensor.sensor_timer = xTimerCreate("sensortimer", 10000, pdTRUE, NULL, SensorTimerHandler);
     //sensor_man.sensor_sem = xSemaphoreCreateBinary();
 }
 
-Sensor SensorCreate(SensorCallback callback, AdcChannelId ch1, AdcChannelId ch2, int port_ir, ExtiId exti_ir)
-{
-	sensor_man.sensor.callback = callback;
-    sensor_man.sensor.limit_1 = AdcChannelCreate(ch1);
-    sensor_man.sensor.limit_2 = AdcChannelCreate(ch2);
-    sensor_man.sensor.port_ir=port_ir;
-    sensor_man.sensor.exti_irsense=exti_ir;
-    sensor_man.sensor.channel_ir=ExtiChannelCreate(port_ir,exti_ir,EXTI_TRIGGARE_FALLING, ExtiHandlerIR,0);
-}
