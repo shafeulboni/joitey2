@@ -61,12 +61,19 @@ typedef struct
     Lock Lock;
     xTimerHandle motortimer;
     xTimerHandle slidertimer;
+    bool SliderPositive;
+    bool SliderNegaitive;
+    bool Motor1;
+    bool Motor2;
+    bool Op_start;
+
 } System;
 
 typedef enum
 {
     SYSTEM_COMMAND_READER,
     SYSTEM_COMMAND_wifi,
+    SYSTEM_COMMAND_INTERRUPT,
 } SystemCommandType;
 
 typedef struct
@@ -74,39 +81,20 @@ typedef struct
     struct
     {
         SystemCommandType cmd : 3;
-        uint8_t sub_cmd : 5;
+       // uint8_t sub_cmd : 3;
     };
-    uint8_t data[10];
+    uint8_t data[5];
 
 } SystemCommand;
 
 System sstem;
 
 
-uint8_t SplitString(char *str, char token, char **string_list) {
-	char *head = str;
-	char *iterator = str;
-	uint8_t count = 0;
-	uint8_t field_count = 1;
-	for (; *iterator != 0;) {
-		if (*iterator == token) {
-			*iterator = 0;
-			string_list[count++] = head;
-			head = (iterator + 1);
-			field_count++;
-		}
-		iterator++;
-	}
-	string_list[count++] = head;
-	return field_count++;
-}
-
 void CardHandlerMain(int id, bool is_connected, uint32_t card_number)
 {
     SystemCommand cmd;
     cmd.cmd = SYSTEM_COMMAND_READER;
     cmd.data[0] = id;
-    cmd.sub_cmd = is_connected;
     memcpy(&cmd.data[1], &card_number, 4);
     xQueueSend(sstem.system_queue, &cmd, 1000);
 }
@@ -120,12 +108,19 @@ void card_operation()
 	UsartSendString(port, "\n", 1);
 	Sendforaccess(sstem.card_data);
 	sstem.card_data=0;
+
+	SliderEnableNegative(sstem.Lock);///ok
+	xTimerChangePeriod(sstem.slidertimer,10 * 1000, 10);
+	sstem.Op_start=true;
 }
 
-void SysDbgHandler(char *reply, const char **lst, uint16_t len)
+void start_motor()
 {
-
+	sstem.Motor1=true;
+	Motor_1_Enable(sstem.Lock);
+	xTimerChangePeriod(sstem.motortimer,10 * 1000, 10);
 }
+
 void MainTask(void * param) {
 	UsartSendString(port, "Walton Sanitery Dispenser\n",26);
 	while (1) {
@@ -145,11 +140,40 @@ void MainTask(void * param) {
 							card_operation();
 			 	 	 		}
 			 	 	 		break;
-//			 	 	 	case SYSTEM_COMMAND_wifi:
-//							{
-//
-//							}
-//							break;
+			 	 	 	case SYSTEM_COMMAND_INTERRUPT:
+							{
+								uint8_t	temp=0;
+
+								memcpy(&temp, &cmd.data[1], 1);
+								//Disp_integer(port, cmd.data[0]);
+								//UsartSendString(port, "\n",1);
+								//Disp_integer(port, cmd.data[1]);
+								//UsartSendString(port, "\n",1);
+								if(temp==1)
+									{
+									UsartSendString(port, "Motor Interrupt Called\n",24);
+									MotorDisable(sstem.Lock);
+									sstem.Motor1=false;
+									sstem.Motor2=false;
+									if(sstem.Op_start==true){
+									SliderEnablePositive(sstem.Lock);///ok
+									xTimerChangePeriod(sstem.slidertimer,10 * 1000, 10);
+									}
+									}
+								else if(temp==2)
+									{
+									UsartSendString(port, "Up Interrupt Called\n",24);
+									SliderDisable(sstem.Lock);
+									if(sstem.Op_start==true){start_motor();}
+									}
+								else if(temp==3)
+									{
+									UsartSendString(port, "Down Interrupt Called\n",24);
+									SliderDisable(sstem.Lock);
+									sstem.Op_start=false;
+									}
+							}
+							break;
 			 	 	 	default:
 			 	 	 	    break;
 			            }
@@ -170,8 +194,9 @@ void WifiHandler(char *msg, int status, int length)
 	{
 		//Motor_1_Enable(sstem.Lock);
 		//Motor_2_Enable(sstem.Lock);
-		SliderEnablePositive(sstem.Lock);
+		SliderEnableNegative(sstem.Lock);//ok
 		xTimerChangePeriod(sstem.slidertimer,10 * 1000, 10);
+		sstem.Op_start=true;
 		//xTimerChangePeriod(sstem.motortimer,10 * 1000, 10);
 	}
 }
@@ -183,7 +208,21 @@ void MotorAlarmHandler(LockAlarmId id)
 
 void MotorTimerHandler1()
 {
-	MotorDisable(sstem.Lock);
+	//MotorDisable(sstem.Lock);
+	if(sstem.Motor1==true)
+	{
+		MotorDisable(sstem.Lock);
+		sstem.Motor1=false;
+		sstem.Motor2=true;
+		Motor_2_Enable(sstem.Lock);
+		xTimerChangePeriod(sstem.motortimer,10 * 1000, 10);
+	}
+	else if(sstem.Motor2==true){
+		MotorDisable(sstem.Lock);
+		sstem.Motor2=false;
+		SliderEnablePositive(sstem.Lock);//ok
+		xTimerChangePeriod(sstem.slidertimer,10 * 1000, 10);
+	}
 }
 
 void SliderTimerHandler1()
@@ -191,27 +230,28 @@ void SliderTimerHandler1()
 	SliderDisable(sstem.Lock);
 }
 
-void Sensorcallbackhandler(bool uplimit, bool downlimit, bool dispatch_complete)
+void Sensorcallbackhandler(int id, bool uplimit, bool downlimit, bool dispatch_complete)
 {
-	if(dispatch_complete==true){
-		MotorDisable(sstem.Lock);
-		UsartSendString(port, "Slider Interrupt Called\n",24);
-	}
-	else if(uplimit==true)
-		{
-		SliderDisable(sstem.Lock);
-		UsartSendString(port, "Up Interrupt Called\n",24);
-		Motor_1_Enable(sstem.Lock);
-		Motor_2_Enable(sstem.Lock);
-		}
-	else if(downlimit==true)
-			{
-			SliderDisable(sstem.Lock);
-			UsartSendString(port, "Down Interrupt Called\n",24);
-			MotorDisable(sstem.Lock);
-			}
 
-	UsartSendString(port, "\n",1);
+	SystemCommand cmd;
+	cmd.cmd = SYSTEM_COMMAND_INTERRUPT;
+	cmd.data[0] = id;
+	int val;
+		if(dispatch_complete==true){
+			val=1;
+			memcpy(&cmd.data[1], &val, 1);
+		}
+		else if(uplimit==true)
+			{
+			val=2;
+			memcpy(&cmd.data[1], &val, 1);
+			}
+		else if(downlimit==true)
+				{
+			val=3;
+			memcpy(&cmd.data[1], &val, 1);
+				}
+	xQueueSend(sstem.system_queue, &cmd, 1000);
 }
 
 

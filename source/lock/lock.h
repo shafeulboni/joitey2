@@ -9,7 +9,7 @@
 #include "adc.h"
 
 typedef void * Sensor;
-typedef void (*SensorCallback )( bool uplimit, bool downlimit, bool dispatch_complete);
+typedef void (*SensorCallback )( int id, bool uplimit, bool downlimit, bool dispatch_complete);
 
 
 Sensor SensorCreate(SensorCallback callback, int portup,ExtiId exti_up,int portdown, ExtiId exti_down, int port_ir, ExtiId exti_ir);

@@ -163,8 +163,8 @@
     <File name="source/w26/w26.h" path="source/w26/w26.h" type="1"/>
     <File name="stm_lib" path="" type="2"/>
     <File name="rtos/include/mpu_wrappers.h" path="FreeRTOS/include/mpu_wrappers.h" type="1"/>
-    <File name="source/usart" path="" type="2"/>
     <File name="stm_lib/inc/stm32f10x_exti.h" path="stm_lib/inc/stm32f10x_exti.h" type="1"/>
+    <File name="source/usart" path="" type="2"/>
     <File name="rtos/include/event_groups.h" path="FreeRTOS/include/event_groups.h" type="1"/>
     <File name="rtos/include/task.h" path="FreeRTOS/include/task.h" type="1"/>
     <File name="stm_lib/inc/stm32f10x_adc.h" path="cmsis_boot/stm32f10x_adc.h" type="1"/>
@@ -179,13 +179,13 @@
     <File name="rtos/list.c" path="FreeRTOS/list.c" type="1"/>
     <File name="source/wifi/wifi.h" path="source/rms/wifi.h" type="1"/>
     <File name="stm_lib/src/stm32f10x_crc.c" path="stm_lib/src/stm32f10x_crc.c" type="1"/>
-    <File name="FreeRTOSConfig.h" path="FreeRTOSConfig.h" type="1"/>
     <File name="stm_lib/inc" path="" type="2"/>
     <File name="source/debug" path="" type="2"/>
+    <File name="FreeRTOSConfig.h" path="FreeRTOSConfig.h" type="1"/>
     <File name="stm_lib/inc/stm32f10x_crc.h" path="stm_lib/inc/stm32f10x_crc.h" type="1"/>
     <File name="stm_lib/src/stm32f10x_rtc.c" path="stm_lib/src/stm32f10x_rtc.c" type="1"/>
-    <File name="rtos" path="" type="2"/>
     <File name="main.c" path="main.c" type="1"/>
+    <File name="rtos" path="" type="2"/>
     <File name="rtos/include/mpu_prototypes.h" path="FreeRTOS/include/mpu_prototypes.h" type="1"/>
   </Files>
 </Project>

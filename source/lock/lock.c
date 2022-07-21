@@ -12,7 +12,7 @@
 #include "FreeRTOS.h"
 #include "task.h"
 #include "queue.h"
-#include "debug.h"
+//#include "debug.h"
 #include "semphr.h"
 //#include "led.h"
 #include "timers.h"
@@ -35,7 +35,7 @@ typedef struct
 } Device;
 
 Device *lock = NULL;
-xTimerHandle lock_timer;
+//xTimerHandle lock_timer;
 xQueueHandle lock_cmd;
 
 
@@ -63,7 +63,7 @@ typedef struct
 typedef struct
 {
     SensorReaderPrv sensor;
-    xSemaphoreHandle sensor_sem;
+    //xSemaphoreHandle sensor_sem;
 } SensorManager;
 
 SensorManager sensor_man;
@@ -125,7 +125,13 @@ void LockTaskHandler(void *param)
 	while (1)
     {
     	uint8_t cmd;
-    	//adc_function();
+    	 //if (xSemaphoreTake(sensor_man.sensor_sem, 1000) == pdTRUE)
+    	     //   {
+    	        if(sensor_man.sensor.ir_sense==true){sensor_man.sensor.callback(1,0,0,1);sensor_man.sensor.ir_sense=false;}
+    	        if(sensor_man.sensor.limit_1_sense==true){sensor_man.sensor.callback(2,1,0,0);sensor_man.sensor.limit_1_sense=false;}
+    	        if(sensor_man.sensor.limit_2_sense==true){sensor_man.sensor.callback(3,0,1,0);sensor_man.sensor.limit_2_sense=false;}
+    	      //  }
+
     	        if (xQueueReceive(lock_cmd, &cmd, 1000) == pdTRUE)
     	        {
     	            //DebugPrintf(lock_dbg, "Command id %d\n", cmd);
@@ -158,6 +164,15 @@ void LockTaskHandler(void *param)
     	            	SetPinState(lock->motor_pin_2, false);
 
 						break;
+//    	            case 7:
+//    	            sensor_man.sensor.callback(1,0,0,1);
+//					break;
+//					case 8:
+//					sensor_man.sensor.callback(2,1,0,0);
+//					break;
+//					case 9:
+//					sensor_man.sensor.callback(3,0,1,0);
+//					break;
     	            default:
     	                break;
     	            }
@@ -168,17 +183,30 @@ void LockTaskHandler(void *param)
 
 void ExtiHandlerIR(BaseType_t *woke_token, void *param)
 {
-	sensor_man.sensor.callback(0,0,1);
+	//sensor_man.sensor.callback(1,0,0,1);
+	//uint8_t cmd = 7;
+	//xQueueSend(lock_cmd, &cmd, 100);
+	sensor_man.sensor.ir_sense=true;
+	//xSemaphoreGive(sensor_man.sensor_sem);
 }
 
 void ExtiHandlerUP(BaseType_t *woke_token, void *param)
 {
-	sensor_man.sensor.callback(1,0,0);
+	//sensor_man.sensor.callback(2,1,0,0);
+	//uint8_t cmd = 8;
+	//xQueueSend(lock_cmd, &cmd, 100);
+	sensor_man.sensor.limit_1_sense=true;
+	//xSemaphoreGive(sensor_man.sensor_sem);
+
 }
 
 void ExtiHandlerDOWN(BaseType_t *woke_token, void *param)
 {
-	sensor_man.sensor.callback(0,1,0);
+	//sensor_man.sensor.callback(3,0,1,0);
+	///uint8_t cmd = 9;
+	//xQueueSend(lock_cmd, &cmd, 100);
+	sensor_man.sensor.limit_2_sense=true;
+	//xSemaphoreGive(sensor_man.sensor_sem);
 }
 
 
@@ -191,6 +219,7 @@ void LockInit()
    // lock_sense_timer = xTimerCreate("", 3000, pdTRUE, NULL, LockTimerHandler);
    // lock_timer = xTimerCreate("", 500, pdTRUE, NULL, LockTimerHandler2);
     xTaskCreate(LockTaskHandler, "Lock", 512, NULL, 2, NULL);
+  //  xSemaphoreGive(sensor_man.sensor_sem);
 }
 
 Sensor SensorCreate(SensorCallback callback, int portup,ExtiId exti_up,int portdown, ExtiId exti_down, int port_ir, ExtiId exti_ir)
@@ -205,6 +234,8 @@ Sensor SensorCreate(SensorCallback callback, int portup,ExtiId exti_up,int portd
     sensor_man.sensor.channel_up=ExtiChannelCreate(portup,exti_up,EXTI_TRIGGARE_FALLING, ExtiHandlerUP,0);
     sensor_man.sensor.channel_down=ExtiChannelCreate(portdown,exti_down,EXTI_TRIGGARE_FALLING, ExtiHandlerDOWN,0);
     sensor_man.sensor.channel_ir=ExtiChannelCreate(port_ir,exti_ir,EXTI_TRIGGARE_FALLING, ExtiHandlerIR,0);
+    ExtiEnable(sensor_man.sensor.channel_up);
+    ExtiEnable(sensor_man.sensor.channel_down);
     ExtiEnable(sensor_man.sensor.channel_ir);
     return &sensor_man.sensor;
 }
